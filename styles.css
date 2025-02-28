@@ -1,0 +1,206 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 20px;
+    height: 100%;
+    background-color: #1B2A47;
+    font-family: 'Bona Nova SC', serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: white;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 3vh;
+    font-size: 25px;
+    flex-wrap: wrap;
+    position: relative;
+}
+
+.header span {
+    flex: 1;
+    text-align: center;
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+.header span:nth-child(2) {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.content-boxes {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.box-container {
+    flex: 1 1 300px;
+    min-width: 0;
+}
+
+.box {
+    border: 2px solid white;
+    padding: 20px;
+    height: 60vh;
+    border-radius: 5px;
+    overflow-y: auto;
+}
+
+.image-container {
+    width: 100%;
+    height: 200px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.header-image {
+    height: 100%;
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
+}
+
+.header a {
+    color: white;
+    text-decoration: none;
+}
+
+.header a:hover {
+    opacity: 0.7;
+}
+
+.header a:nth-child(2) {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.event {
+    margin-bottom: 20px;
+    padding: 10px;
+    color: white;
+}
+
+.event h3 {
+    margin: 0;
+    color: inherit;
+}
+
+.event h4 {
+    margin: 5px 0;
+    color: inherit;
+}
+
+.event p {
+    margin: 5px 0;
+    color: inherit;
+}
+
+.featured {
+    background-color: white;
+    color: black;
+}
+
+.weather-content {
+    color: white;
+    padding: 20px;
+    font-size: 1.4em;
+}
+
+.weather-header h3 {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.location-temp {
+    flex: 1;
+}
+
+.current-weather {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin: 15px 0;
+    flex-wrap: wrap;
+}
+
+.weather-info {
+    display: flex;
+    flex-direction: column;
+    font-size: large;
+}
+
+.temp {
+    font-size: 2.5em;
+    margin: 0;
+    font-weight: bold;
+}
+
+.description {
+    margin: 5px 0;
+    text-transform: capitalize;
+    font-size: large;
+}
+
+.weather-details {
+    margin-top: 20px;
+}
+
+.weather-details p {
+    margin: 5px 0;
+}
+
+.forecast-section {
+    flex: 1;
+}
+
+.forecast-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.forecast-day {
+    text-align: center;
+    padding: 10px;
+    flex: 1 1 120px;
+}
+
+.forecast-day img {
+    width: 50px;
+    height: 50px;
+    margin: 10px 0;
+}
+
+@media (max-width: 768px) {
+    .content-boxes {
+        flex-direction: column;
+    }
+
+    .header {
+        font-size: 20px;
+    }
+
+    .box {
+        height: auto;
+        min-height: 300px;
+    }
+
+    .current-weather {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
