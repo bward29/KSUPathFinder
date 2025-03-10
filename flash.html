@@ -1,10 +1,547 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-    <title>Flash</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Academic Advisor</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+        integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+        body,
+        html {
+            height: 100%;
+            margin: 0;
+            background-color: #1B2A47;
+            color: white;
+        }
+
+        .chat {
+            margin-top: auto;
+            margin-bottom: auto;
+        }
+
+        .card {
+            height: 600px;
+            border-radius: 15px !important;
+            background-color: rgba(0, 0, 0, 0.4) !important;
+        }
+
+        .msg_card_body {
+            overflow-y: auto;
+            height: 400px;
+            scrollbar-width: thin;
+            scrollbar-color: #888 #f1f1f1;
+        }
+
+        .msg_card_body::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        .msg_card_body::-webkit-scrollbar-track {
+            background: rgba(241, 241, 241, 0.1);
+        }
+
+        .msg_card_body::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 5px;
+        }
+
+        .card-header {
+            border-radius: 15px 15px 0 0 !important;
+            border-bottom: 0 !important;
+            background-color: rgba(0, 0, 0, 0.3) !important;
+            padding: 15px !important;
+        }
+
+        .card-footer {
+            border-radius: 0 0 15px 15px !important;
+            border-top: 0 !important;
+            background-color: rgba(0, 0, 0, 0.3) !important;
+            padding: 10px 20px !important;
+        }
+
+        .type_msg {
+            background-color: rgba(0, 0, 0, 0.3) !important;
+            border: 0 !important;
+            color: white !important;
+            height: 60px !important;
+            overflow-y: auto;
+            border-radius: 15px 0 0 15px !important;
+            padding: 15px !important;
+        }
+
+        .type_msg:focus {
+            box-shadow: none !important;
+            outline: 0px !important;
+        }
+
+        .send_btn {
+            border-radius: 0 15px 15px 0 !important;
+            background-color: rgba(0, 0, 0, 0.3) !important;
+            border: 0 !important;
+            color: white !important;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .send_btn:hover {
+            background-color: rgba(255, 255, 255, 0.1) !important;
+        }
+
+        .user_img {
+            height: 70px;
+            width: 70px;
+            border: 1.5px solid #f5f6fa;
+            border-radius: 50%;
+        }
+
+        .user_img_msg {
+            height: 40px;
+            width: 40px;
+            border: 1.5px solid #f5f6fa;
+            border-radius: 50%;
+        }
+
+        .img_cont {
+            position: relative;
+            height: 70px;
+            width: 70px;
+        }
+
+        .img_cont_msg {
+            height: 40px;
+            width: 40px;
+        }
+
+        .online_icon {
+            position: absolute;
+            height: 15px;
+            width: 15px;
+            background-color: #4cd137;
+            border-radius: 50%;
+            bottom: 0.2em;
+            right: 0.4em;
+            border: 1.5px solid white;
+        }
+
+        .user_info {
+            margin-top: auto;
+            margin-bottom: auto;
+            margin-left: 15px;
+        }
+
+        .user_info span {
+            font-size: 20px;
+            color: white;
+        }
+
+        .user_info p {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.6);
+            margin: 0;
+        }
+
+        .msg_cotainer {
+            margin-top: auto;
+            margin-bottom: auto;
+            margin-left: 10px;
+            border-radius: 25px;
+            background-color: rgb(82, 172, 255);
+            padding: 10px 15px;
+            position: relative;
+            max-width: 80%;
+            word-wrap: break-word;
+        }
+
+        .msg_cotainer_send {
+            margin-top: auto;
+            margin-bottom: auto;
+            margin-right: 10px;
+            border-radius: 25px;
+            background-color: #58cc71;
+            padding: 10px 15px;
+            position: relative;
+            max-width: 80%;
+            word-wrap: break-word;
+        }
+
+        .msg_time {
+            position: absolute;
+            left: 0;
+            bottom: -18px;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 10px;
+        }
+
+        .msg_time_send {
+            position: absolute;
+            right: 0;
+            bottom: -18px;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 10px;
+        }
+
+        .typing-indicator span {
+            height: 8px;
+            width: 8px;
+            background-color: #fff;
+            border-radius: 50%;
+            display: inline-block;
+            margin: 0 1px;
+            animation: typing 1.5s infinite ease-in-out;
+        }
+
+        .typing-indicator span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .typing-indicator span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes typing {
+            0% {
+                transform: translateY(0px);
+                opacity: 0.5;
+            }
+
+            50% {
+                transform: translateY(-5px);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(0px);
+                opacity: 0.5;
+            }
+        }
+    </style>
 </head>
+
 <body>
-    <h1>Flash Academic AI Advisor</h1>
-    <a href="index.html">Back to Home</a>
+    <div class="container-fluid h-100">
+        <div class="row justify-content-center h-100">
+            <div class="col-md-8 col-xl-6 chat">
+                <div class="card">
+                    <div class="card-header msg_head">
+                        <div class="d-flex bd-highlight">
+                            <div class="img_cont">
+                                <img src="https://i.ibb.co/fSNP7Rz/icons8-chatgpt-512.png"
+                                    class="rounded-circle user_img" alt="AI Academic Advisor Logo">
+                                <span class="online_icon"></span>
+                            </div>
+                            <div class="user_info">
+                                <span>AI Academic Advisor</span>
+                                <p>Ask me anything about courses, majors, or academic life!</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="messageFormeight" class="card-body msg_card_body">
+                        <!-- Welcome message will be added dynamically -->
+                    </div>
+                    <div class="card-footer">
+                        <form id="messageArea" class="input-group">
+                            <input type="text" id="text" name="msg" placeholder="Type your message..."
+                                autocomplete="off" class="form-control type_msg" required />
+                            <div class="input-group-append">
+                                <button type="submit" id="send" class="input-group-text send_btn" title="Send Message">
+                                    <i class="fas fa-location-arrow" aria-hidden="true"></i>
+                                    <span class="sr-only">Send</span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Academic advisors knowledge base
+        const knowledgeBase = {
+            // General information
+            "general": [
+                "The academic year consists of Fall and Spring semesters, with optional Summer sessions.",
+                "Most full-time students take between 12-18 credit hours per semester.",
+                "A bachelor's degree typically requires 120-130 credit hours to complete.",
+                "You need to maintain a minimum GPA of 2.0 to remain in good academic standing.",
+                "Academic advisors are available to help you plan your course schedule and navigate degree requirements."
+            ],
+
+            // Course information
+            "courses": [
+                "Core curriculum courses fulfill general education requirements and are required for all students.",
+                "Prerequisites are courses that must be completed before taking a more advanced course.",
+                "Upper-division courses are typically numbered 3000-4999 and are designed for juniors and seniors.",
+                "Graduate courses are typically numbered 5000 and above.",
+                "Online courses offer flexibility but require self-discipline and time management skills."
+            ],
+
+            // Major information
+            "majors": [
+                "Most undergraduate programs require declaring a major by the end of sophomore year.",
+                "Many students change their major at least once during their college career.",
+                "Some competitive majors have GPA requirements and application processes.",
+                "A minor typically requires 15-21 credit hours in a secondary area of study.",
+                "Double majors require completing all requirements for two different degree programs."
+            ],
+
+            // Registration information
+            "registration": [
+                "Registration dates are determined by class standing, with seniors registering first.",
+                "The academic calendar lists important dates for registration, drop/add, and withdrawal.",
+                "You need to meet with your academic advisor to receive a registration PIN.",
+                "Waitlists are available for full courses, but don't guarantee enrollment.",
+                "The drop/add period allows you to adjust your schedule without penalty during the first week of classes."
+            ],
+
+            // Financial information
+            "financial": [
+                "Tuition is typically due before the start of each semester.",
+                "FAFSA applications should be submitted annually to qualify for financial aid.",
+                "Scholarship applications often have early deadlines for the following academic year.",
+                "Work-study positions provide on-campus employment opportunities for eligible students.",
+                "Payment plans allow you to pay tuition in installments throughout the semester."
+            ],
+
+            // Campus resources
+            "resources": [
+                "The writing center offers free assistance with papers and writing assignments.",
+                "Tutoring services are available for most courses at no additional cost.",
+                "The library provides access to research databases, study spaces, and academic resources.",
+                "Counseling services offer confidential support for mental health and personal concerns.",
+                "Career services can help with resume building, internship placement, and job searches."
+            ]
+        };
+
+        // Academic calendar dates
+        const calendarDates = {
+            "fall registration": "April 1-15",
+            "spring registration": "November 1-15",
+            "summer registration": "March 15-30",
+            "fall semester start": "August 25",
+            "fall semester end": "December 15",
+            "spring semester start": "January 15",
+            "spring semester end": "May 10",
+            "fall break": "October 10-14",
+            "spring break": "March 12-16",
+            "withdrawal deadline": "The withdrawal deadline is usually 10 weeks into the semester",
+            "graduation application": "Graduation applications are due three months before the end of your final semester",
+            "finals week": "Finals week typically begins two weeks before the end of the semester"
+        };
+
+        // Course list
+        const courses = [
+            { code: "ENG 101", name: "Composition I", credits: 3, description: "Introduction to academic writing and critical thinking." },
+            { code: "MATH 120", name: "College Algebra", credits: 3, description: "Equations, functions, and algebraic concepts." },
+            { code: "PSYC 101", name: "Introduction to Psychology", credits: 3, description: "Survey of major topics in psychology." },
+            { code: "HIST 105", name: "World History I", credits: 3, description: "Development of civilization to 1650." },
+            { code: "BIOL 110", name: "Principles of Biology", credits: 4, description: "Introduction to biological principles with lab." },
+            { code: "CHEM 101", name: "General Chemistry I", credits: 4, description: "Fundamentals of chemistry with lab." },
+            { code: "CS 150", name: "Introduction to Programming", credits: 3, description: "Basic programming concepts and problem solving." },
+            { code: "ECON 201", name: "Principles of Microeconomics", credits: 3, description: "Introduction to economic principles and theories." },
+            { code: "SOC 101", name: "Introduction to Sociology", credits: 3, description: "Analysis of human social interaction and society." },
+            { code: "PHIL 110", name: "Introduction to Ethics", credits: 3, description: "Survey of moral philosophy and ethical theories." }
+        ];
+
+        // Major programs
+        const majors = [
+            { name: "Computer Science", department: "Science & Technology", degree: "BS", description: "Studies algorithms, programming languages, and computational systems." },
+            { name: "Business Administration", department: "Business", degree: "BBA", description: "Core business principles including management, marketing, and finance." },
+            { name: "Psychology", department: "Social Sciences", degree: "BA/BS", description: "Study of mind and behavior, research methods, and psychological theories." },
+            { name: "English", department: "Humanities", degree: "BA", description: "Analysis of literature, critical thinking, and written communication." },
+            { name: "Biology", department: "Science & Technology", degree: "BS", description: "Study of living organisms and biological systems." },
+            { name: "Engineering", department: "Science & Technology", degree: "BS", description: "Application of scientific and mathematical principles to design systems." },
+            { name: "Nursing", department: "Health Sciences", degree: "BSN", description: "Professional healthcare training with clinical experience." },
+            { name: "Communications", department: "Humanities", degree: "BA", description: "Study of human communication processes and media." },
+            { name: "Criminal Justice", department: "Social Sciences", degree: "BS", description: "Study of law enforcement, legal systems, and corrections." },
+            { name: "Education", department: "Education", degree: "BS", description: "Preparation for teaching careers with specialization options." }
+        ];
+
+        // Function to generate AI response based on user input
+        function generateResponse(userInput) {
+            const input = userInput.toLowerCase();
+            let response = "";
+
+            // Check for greetings
+            if (input.match(/\b(hello|hi|hey|greetings|howdy)\b/)) {
+                return "Hello! I'm your AI Academic Advisor. How can I help you today?";
+            }
+
+            // Check for gratitude
+            if (input.match(/\b(thanks|thank you|appreciate|grateful)\b/)) {
+                return "You're welcome! I'm happy to help. Let me know if you have any other questions.";
+            }
+
+            // Check for farewells
+            if (input.match(/\b(bye|goodbye|see you|farewell)\b/)) {
+                return "Goodbye! Feel free to return anytime you have questions about your academic journey.";
+            }
+
+            // Check for identity questions
+            if (input.match(/\b(who are you|what are you|about you)\b/)) {
+                return "I'm an AI Academic Advisor designed to help students with questions about courses, majors, registration, deadlines, and other academic matters. How can I assist you today?";
+            }
+
+            // Check for deadline/calendar questions
+            if (input.match(/\b(when|deadline|due date|calendar|date)\b/)) {
+                const today = new Date();
+                const formattedDate = today.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+
+                // Look for specific calendar terms
+                for (const [event, date] of Object.entries(calendarDates)) {
+                    if (input.includes(event)) {
+                        return `${event.charAt(0).toUpperCase() + event.slice(1)} is on ${date}. Today is ${formattedDate}. Is there anything specific about this date you'd like to know?`;
+                    }
+                }
+
+                return `Today is ${formattedDate}. Most academic deadlines can be found on the university calendar. Are you looking for a specific deadline?`;
+            }
+
+            // Check for course-related questions
+            if (input.match(/\b(course|class|subject|prerequisite|credit hour|credits)\b/)) {
+                // Look for specific course codes
+                const courseMatches = courses.filter(course =>
+                    input.includes(course.code.toLowerCase()) ||
+                    input.includes(course.name.toLowerCase())
+                );
+
+                if (courseMatches.length > 0) {
+                    const course = courseMatches[0];
+                    return `${course.code}: ${course.name} (${course.credits} credits) - ${course.description}. Would you like more information about this course?`;
+                }
+
+                // Return general course information
+                const courseInfo = knowledgeBase.courses[Math.floor(Math.random() * knowledgeBase.courses.length)];
+                return `${courseInfo} What specific course information are you looking for?`;
+            }
+
+            // Check for major-related questions
+            if (input.match(/\b(major|degree|program|concentration|minor|field|study)\b/)) {
+                // Look for specific majors
+                const majorMatches = majors.filter(major =>
+                    input.includes(major.name.toLowerCase()) ||
+                    input.includes(major.department.toLowerCase())
+                );
+
+                if (majorMatches.length > 0) {
+                    const major = majorMatches[0];
+                    return `The ${major.name} program (${major.degree}) in the ${major.department} department focuses on ${major.description} Would you like more details about requirements for this major?`;
+                }
+
+                // Return general major information
+                const majorInfo = knowledgeBase.majors[Math.floor(Math.random() * knowledgeBase.majors.length)];
+                return `${majorInfo} Are you interested in a specific major or program?`;
+            }
+
+            // Check for registration questions
+            if (input.match(/\b(register|registration|sign up|enroll|add class|drop class|withdraw)\b/)) {
+                const regInfo = knowledgeBase.registration[Math.floor(Math.random() * knowledgeBase.registration.length)];
+                return `${regInfo} Do you need help with the registration process?`;
+            }
+
+            // Check for financial questions
+            if (input.match(/\b(tuition|cost|financial aid|fafsa|scholarship|payment|pay|loan|grant|work study)\b/)) {
+                const finInfo = knowledgeBase.financial[Math.floor(Math.random() * knowledgeBase.financial.length)];
+                return `${finInfo} Would you like more information about financing your education?`;
+            }
+
+            // Check for resource questions
+            if (input.match(/\b(resource|help|service|support|tutor|counseling|advising|library|lab)\b/)) {
+                const resourceInfo = knowledgeBase.resources[Math.floor(Math.random() * knowledgeBase.resources.length)];
+                return `${resourceInfo} Is there a specific campus resource you're looking for?`;
+            }
+
+            // If no specific match, provide a general response
+            const generalInfo = knowledgeBase.general[Math.floor(Math.random() * knowledgeBase.general.length)];
+            return `${generalInfo} Could you provide more details about what you're looking for so I can better assist you?`;
+        }
+
+        $(document).ready(function () {
+            // Function to get current time formatted as HH:MM
+            function getCurrentTime() {
+                const date = new Date();
+                const hours = date.getHours().toString().padStart(2, '0');
+                const minutes = date.getMinutes().toString().padStart(2, '0');
+                return hours + ":" + minutes;
+            }
+
+            // Function to safely encode HTML entities
+            function escapeHtml(text) {
+                const div = document.createElement('div');
+                div.textContent = text;
+                return div.innerHTML;
+            }
+
+            // Display welcome message
+            function showWelcomeMessage() {
+                const welcomeHtml = '<div class="d-flex justify-content-start mb-4"><div class="img_cont_msg"><img src="https://i.ibb.co/fSNP7Rz/icons8-chatgpt-512.png" class="rounded-circle user_img_msg" alt="AI Assistant"></div><div class="msg_cotainer">Welcome to the AI Academic Advisor! How can I help you today?<span class="msg_time">Now</span></div></div>';
+                $("#messageFormeight").append(welcomeHtml);
+            }
+
+            // Show welcome message on page load
+            showWelcomeMessage();
+
+            // Function to show typing indicator
+            function showTypingIndicator() {
+                const typingHtml = '<div id="typing-indicator" class="d-flex justify-content-start mb-4"><div class="img_cont_msg"><img src="https://i.ibb.co/fSNP7Rz/icons8-chatgpt-512.png" class="rounded-circle user_img_msg" alt="AI Assistant"></div><div class="msg_cotainer">Thinking<div class="typing-indicator"><span></span><span></span><span></span></div></div></div>';
+                $("#messageFormeight").append(typingHtml);
+                $("#messageFormeight").scrollTop($("#messageFormeight")[0].scrollHeight);
+            }
+
+            // Function to remove typing indicator
+            function removeTypingIndicator() {
+                $("#typing-indicator").remove();
+            }
+
+            // Handle form submission
+            $("#messageArea").on("submit", function (event) {
+                event.preventDefault();
+
+                const str_time = getCurrentTime();
+                const rawText = $("#text").val();
+
+                if (!rawText.trim()) return; // Don't send empty messages
+
+                // Create and display user message
+                const safeText = escapeHtml(rawText);
+                const userHtml = '<div class="d-flex justify-content-end mb-4"><div class="msg_cotainer_send">' + safeText + '<span class="msg_time_send">' + str_time +
+                    '</span></div><div class="img_cont_msg"><img src="https://i.ibb.co/d5b84Xw/Untitled-design.png" class="rounded-circle user_img_msg" alt="User"></div></div>';
+
+                $("#text").val(""); // Clear input field
+                $("#messageFormeight").append(userHtml);
+                $("#messageFormeight").scrollTop($("#messageFormeight")[0].scrollHeight);
+
+                // Show typing indicator
+                showTypingIndicator();
+
+                // Simulate AI thinking time (between 1-2 seconds)
+                setTimeout(function () {
+                    // Remove typing indicator
+                    removeTypingIndicator();
+
+                    // Generate and display AI response
+                    const aiResponse = generateResponse(rawText);
+                    const safeResponse = escapeHtml(aiResponse);
+                    const botHtml = '<div class="d-flex justify-content-start mb-4"><div class="img_cont_msg"><img src="https://i.ibb.co/fSNP7Rz/icons8-chatgpt-512.png" class="rounded-circle user_img_msg" alt="AI Assistant"></div><div class="msg_cotainer">' + safeResponse + '<span class="msg_time">' + getCurrentTime() + '</span></div></div>';
+                    $("#messageFormeight").append(botHtml);
+                    $("#messageFormeight").scrollTop($("#messageFormeight")[0].scrollHeight);
+                }, Math.floor(Math.random() * 1000) + 1000);
+            });
+
+            // Add event listener for Enter key
+            $("#text").keypress(function (e) {
+                if (e.which == 13 && !e.shiftKey) {
+                    $("#messageArea").submit();
+                    return false;
+                }
+            });
+        });
+    </script>
 </body>
+
 </html>
