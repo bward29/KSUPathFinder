@@ -1,10 +1,143 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Class Search</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Additional styles to ensure all subjects are visible */
+        .scrollable-list {
+            overflow-y: auto !important;
+            max-height: 600px !important;
+            padding-bottom: 20px;
+        }
+
+        .list-item {
+            padding: 10px;
+            margin-bottom: 5px;
+            cursor: pointer;
+            background-color: #2a3e5c;
+            transition: background-color 0.2s;
+            border-radius: 3px;
+        }
+
+        .subject-item:last-child {
+            margin-bottom: 30px;
+            border-bottom: 2px solid #4a5e7c;
+            padding-bottom: 15px;
+        }
+    </style>
 </head>
+
 <body>
-    <h1>Class Search Page</h1>
-    <a href="index.html">Back to Home</a>
+    <div class="header">
+        <a href="index.html">Back to Home</a>
+        <span>Class Search</span>
+    </div>
+
+    <div class="content-boxes">
+        <div class="box-container">
+            <div class="box">
+                <h2>Subject</h2>
+                <div class="scrollable-list" id="subject-list">
+                    <div class="list-item subject-item" onclick="selectOption(this, 'subject')">Computer Science</div>
+                    <div class="list-item subject-item" onclick="selectOption(this, 'subject')">Biological Sciences
+                    </div>
+                    <div class="list-item subject-item" onclick="selectOption(this, 'subject')">Spanish</div>
+                    <div class="list-item subject-item" onclick="selectOption(this, 'subject')">Communication Studies
+                    </div>
+                    <div class="list-item subject-item" onclick="selectOption(this, 'subject')">History</div>
+                    <div class="list-item subject-item" onclick="selectOption(this, 'subject')">Chemistry</div>
+                    <div class="list-item subject-item" onclick="selectOption(this, 'subject')">Botany</div>
+                    <div class="list-item subject-item" onclick="selectOption(this, 'subject')">Accounting</div>
+                    <div class="list-item subject-item" onclick="selectOption(this, 'subject')">Architecture</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="box-container">
+            <div class="box">
+                <h2>Course Level</h2>
+                <div class="scrollable-list" id="level-list">
+                    <div class="list-item" onclick="selectOption(this, 'level')">Undergraduate</div>
+                    <div class="list-item" onclick="selectOption(this, 'level')">Graduate</div>
+                    <div class="list-item" onclick="selectOption(this, 'level')">Professional</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="box-container">
+            <div class="box">
+                <h2>Search by Term</h2>
+                <div class="scrollable-list" id="term-list">
+                    <div class="list-item" onclick="selectOption(this, 'term')">Fall 2025</div>
+                    <div class="list-item" onclick="selectOption(this, 'term')">Summer 2025</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="button-container">
+        <button id="search-button" onclick="searchCourses()">Search Courses</button>
+    </div>
+
+    <script>
+        // Track selected options
+        const selectedOptions = {
+            subject: null,
+            level: null,
+            term: null
+        };
+
+        // Function to handle selection of options
+        function selectOption(element, category) {
+            // Don't allow selection of "Coming Soon" items
+            if (element.classList.contains('coming-soon')) {
+                return;
+            }
+
+            // Remove selected class from all options in the category
+            const options = document.querySelectorAll(`#${category}-list .list-item`);
+            options.forEach(option => {
+                option.classList.remove('selected');
+            });
+
+            // Add selected class to clicked option
+            element.classList.add('selected');
+
+            // Update selected option
+            selectedOptions[category] = element.textContent.trim();
+            console.log(`Selected ${category}:`, selectedOptions[category]);
+        }
+
+        // Function to handle search button click
+        function searchCourses() {
+            // Check if at least a subject is selected
+            if (selectedOptions.subject) {
+                // Store the selected subject in localStorage to avoid URL parameter issues
+                localStorage.setItem('selectedSubject', selectedOptions.subject);
+
+                // Navigate to the video page
+                window.location.href = "class-search-video.html";
+                console.log("Selected subject saved:", selectedOptions.subject);
+            } else {
+                alert("Please select a subject");
+            }
+        }
+
+        // Force scroll check after page loads
+        document.addEventListener('DOMContentLoaded', function () {
+            // Ensure all subjects are visible by forcing scrolling reset
+            const subjectList = document.getElementById('subject-list');
+            subjectList.scrollTop = 0;
+
+            // Log the number of subjects for debugging
+            console.log("Total subjects:", document.querySelectorAll('#subject-list .list-item').length);
+        });
+    </script>
 </body>
+
 </html>

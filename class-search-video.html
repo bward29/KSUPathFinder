@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Class Search</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            height: 100%;
+            background-color: #1B2A47;
+            font-family: 'Bona Nova SC', serif;
+            color: white;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 3vh;
+            font-size: 25px;
+        }
+
+        .header a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .header a:hover {
+            text-decoration: underline;
+        }
+
+        .header span {
+            flex: 1;
+            text-align: center;
+            text-decoration: underline;
+            font-weight: bold;
+        }
+
+        .logo-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .logo {
+            display: inline-block;
+            background-color: white;
+            color: #1B2A47;
+            padding: 10px 30px;
+            font-weight: bold;
+            font-size: 20px;
+            border-radius: 5px;
+        }
+
+        .content-wrapper {
+            display: flex;
+            gap: 20px;
+        }
+
+        .sidebar {
+            width: 30%;
+        }
+
+        .main-content {
+            width: 70%;
+        }
+
+        .course-box {
+            background-color: #1e2d4d;
+            border: 1px solid #2a3e5c;
+            border-radius: 5px;
+            padding: 20px;
+            height: 100%;
+        }
+
+        .subject-title {
+            margin-top: 0;
+            border-bottom: 1px solid #4a5e7c;
+            padding-bottom: 8px;
+        }
+
+        .course-list {
+            margin-top: 15px;
+        }
+
+        .course-item {
+            padding: 10px;
+            margin-bottom: 5px;
+            cursor: pointer;
+            background-color: #2a3e5c;
+            transition: background-color 0.2s;
+            border-radius: 3px;
+        }
+
+        .course-item:hover {
+            background-color: #3a4e6c;
+        }
+
+        .course-item.selected {
+            background-color: #3a4e6c;
+        }
+
+        .course-title {
+            text-align: center;
+            margin-top: 0;
+            margin-bottom: 25px;
+        }
+
+        .video-container {
+            background-color: #1e2d4d;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .video-player {
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            object-fit: contain;
+        }
+
+        .play-button {
+            width: 60px;
+            height: 60px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: none;
+            /* Hidden by default now */
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: white;
+            font-size: 24px;
+            position: absolute;
+            z-index: 2;
+        }
+
+        .play-button:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .course-info {
+            margin-top: 20px;
+        }
+
+        .course-info h3 {
+            margin-bottom: 10px;
+            border-bottom: 1px solid #2a3e5c;
+            padding-bottom: 5px;
+        }
+
+        .warning-box {
+            margin-top: 20px;
+            border-left: 5px solid #FFCC00;
+            padding: 10px;
+            background-color: rgba(255, 204, 0, 0.1);
+        }
+
+        .warning-label {
+            display: inline-block;
+            background-color: #FFCC00;
+            color: black;
+            padding: 5px 10px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .selector {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .selector label {
+            display: inline-block;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        select {
+            padding: 8px 12px;
+            font-size: 16px;
+            background-color: #2a3e5c;
+            color: white;
+            border: 1px solid #4a5e7c;
+            border-radius: 5px;
+            width: 300px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <a href="classsearch.html">Back to Class Search</a>
+        <span>Class Video</span>
+        <a href="index.html">Home</a>
+    </div>
+
+    <div class="container">
+        <div class="image-container">
+            <img src="KSU Pathfinder.png" alt="Header image" class="header-image">
+        </div>
+
+        <!-- Added subject selector dropdown with accessible label -->
+        <div class="selector">
+            <label for="subject-selector">Select a Subject:</label>
+            <select id="subject-selector" aria-label="Select a subject" title="Select a subject"
+                onchange="changeSubject()">
+                <option value="Computer Science">Computer Science</option>
+                <option value="Biological Sciences">Biological Sciences</option>
+                <option value="Spanish">Spanish</option>
+                <option value="Communication Studies">Communication Studies</option>
+                <option value="History">History</option>
+                <option value="Chemistry">Chemistry</option>
+                <option value="Botany">Botany</option>
+                <option value="Accounting">Accounting</option>
+                <option value="Architecture">Architecture</option>
+            </select>
+            </select>
+        </div>
+
+        <div class="content-wrapper">
+            <div class="sidebar">
+                <div class="course-box">
+                    <h3 class="subject-title" id="subject-title">Loading Subject...</h3>
+                    <div class="course-list" id="course-list">
+                        <!-- Courses will be populated here by JavaScript -->
+                        <div>Loading courses...</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="main-content">
+                <div class="course-box">
+                    <h2 class="course-title" id="course-title">Select a Course</h2>
+
+                    <div class="video-container">
+                        <div class="play-button">▶</div>
+                        <video class="video-player" controls>
+                            <source src="" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+
+                    <div class="course-info">
+                        <h3>Description</h3>
+                        <div id="course-description">Select a course to view its description.</div>
+                    </div>
+
+                    <div class="course-info">
+                        <h3>When it is offered</h3>
+                        <div id="course-schedule">Select a course to view when it is offered.</div>
+                    </div>
+
+                    <div class="warning-box">
+                        <div class="warning-label">WARNING!</div>
+                        <div id="course-warning">Select a course to view warnings and prerequisites.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            // Course data organized by subject
+            const courseData = {
+                "Computer Science": [
+                    {
+                        title: "Computer Organization",
+                        description: "Computer system organization, including performance measures, instruction sets, computer arithmetic, central processing unit, pipelining, memory hierarchy and parallel processors.",
+                        schedule: "Fall 2025: Monday, Wednesday, Friday 9:00 AM - 10:15 AM",
+                        warning: "Make sure to double check with your advisor to see if this course works with your roadmap!",
+                        video: "COMPUTER ORGANIZATION.mp4"
+                    },
+                    {
+                        title: "Discrete Mathematics",
+                        description: "Discrete structures for computer scientists with a focus on: mathematical reasoning, combinatorial analysis, discrete structures, algorithmic thinking, applications and modeling. Specific topics include propositional and predicate logic and logical modeling using Boolean algebra and logical gates, information representation using binary system, sets, functions, relations, logical argumentation and proof techniques, recursion and recursive modeling, sequences and summation, arithmetic and geometric progressions, algorithms, iterative vs recursive algorithms, mathematical and structural induction, recursive structures, counting, permutation and combination, binomial expansion, matrices and matrix-operations, graphs and trees and their traversal, probability and Bayes' theorem, finite state machines, their modeling and applications, Regular grammar, basics of number theory, modeling computation and Turing machines, decidability and halting problem.",
+                        schedule: "Summer 2025: Monday through Thursday 1:00 PM - 3:30 PM",
+                        warning: "Make sure to double check with your advisor to see if this course works with your roadmap!",
+                        video: "DISCRETE MATHEMATICS.mp4"
+                    },
+                    {
+                        title: "Computer Science Principles",
+                        description: "An introductory, broad and hands-on coverage of aspects of computer science, including algorithms, problem solving, operating systems concepts, computer architecture, programming languages and modern applications. Three-credit lecture with one-credit lab.",
+                        schedule: "Fall 2025: Tuesday, Thursday 11:00 AM - 12:30 PM",
+                        warning: "Make sure to double check with your advisor to see if this course works with your roadmap!",
+                        video: "COMPUTER SCIENCE PRINCIPLES.mp4"
+                    }
+                ],
+                "Biological Sciences": [
+                    {
+                        title: "Human Biology",
+                        description: "Study of the scientific method and life's properties, emphasizing human biology. Topics include energy, genetics, reproduction, development disease, nutrition and physical fitness in humans. This course may not be used to fulfill major or minor requirements in the following programs: B.A. Biology, B.S. Biology, B.S. Biotechnology, B.S. Botany, B.S. Environmental and Conservation Biology, B.S. Medical Laboratory Science, B.S. Zoology and the Biological Sciences minor.",
+                        schedule: "Fall 2025: Monday, Wednesday, Friday 10:30 AM - 11:45 AM",
+                        warning: "Make sure to double check with your advisor to see if this course works with your roadmap!",
+                        video: "HUMAN BIOLOGY.mp4"
+
+                    },
+                    {
+                        title: "Life on Planet Earth",
+                        description: "Explores the fascinating breadth of life on Earth including the unique ecology and survival strategies of animals, plants and microbes in their natural habitats. This course may not be used to fulfill major or minor requirements in the following programs: B.A. Biology, B.S. Biology, B.S. Biotechnology, B.S. Botany, B.S. Environmental and Conservation Biology, B.S. Medical Laboratory Science, B.S. Zoology and the Biological Sciences minor.",
+                        schedule: "Summer 2025: Tuesday, Thursday 9:00 AM - 11:30 AM",
+                        warning: "Make sure to double check with your advisor to see if this course works with your roadmap!",
+                        video: "lIFE ON PLANET EARTH.mp4"
+
+                    },
+                    {
+                        title: "Foundational Anatomy and Physiology I",
+                        description: "Anatomy and physiology to include organization of the human body, cells, tissues, organs and systems; integumentary, skeletal, muscular and respiratory systems; and overviews of the nervous and circulatory system. This course is taught on Kent State's regional campuses for associate degree programs. This course may not be used to fulfill major or minor requirements in the following programs: B.A. Biology, B.S. Biology, B.S. Biotechnology, B.S. Botany, B.S. Environmental and Conservation Biology, B.S. Medical Laboratory Science, B.S. Zoology and the Biological Sciences minor.",
+                        schedule: "Fall 2025: Monday, Wednesday 1:00 PM - 2:30 PM, Friday 1:00 PM - 3:00 PM (Lab)",
+                        warning: "Make sure to double check with your advisor to see if this course works with your roadmap!",
+                        video: "ANATOMY AND PHYSIOLOGY.mp4"
+
+                    }
+                ],
+                "Spanish": [
+                    {
+                        title: "Civilization of Spain",
+                        description: "General survey of evolution of Spanish civilization from antiquity to present day.",
+                        schedule: "Fall 2025: Monday, Wednesday 2:00 PM - 3:15 PM",
+                        warning: "Make sure to double check with your advisor to see if this course works with your roadmap!",
+                        video: "CIVILIZATION OF SPAIN.mp4"
+
+                    },
+                    {
+                        title: "Intermediate Spanish II",
+                        description: "A continuation of the development of listening, speaking, reading and writing skills using a variety of material on the Spanish language in the context of Hispanic cultures and specific areas of study like culture, business, justice, etc.",
+                        schedule: "Summer 2025: Monday through Thursday 10:00 AM - 11:45 AM",
+                        warning: "Make sure to double check with your advisor to see if this course works with your roadmap!",
+                        video: "INTERMEDIATE SPANISH II.mp4"
+
+                    },
+                    {
+                        title: "Culture and Civilization of Latin America",
+                        description: "This course focuses on a study of the historical and cultural development of Latin America, with emphasis on Spanish America, as reflected in its geography, history, art, political and social institutions encompassing from Pre-Hispanic times to the present.",
+                        schedule: "Fall 2025: Tuesday, Thursday 4:00 PM - 5:30 PM",
+                        warning: "Make sure to double check with your advisor to see if this course works with your roadmap!",
+                        video: "CULTURE AND CIVILIZATION OF LATIN AMERICA.mp4"
+
+                    }
+                ],
+                "Communication Studies": [
+                    {
+                        title: "Interpersonal Communication",
+                        description: "Introduction to human interpersonal communication. Components and structures situations and contexts are described nonevaluative focus with emphasis on informal experience.",
+                        schedule: "Fall 2025: Monday, Wednesday, Friday 11:00 AM - 12:15 PM",
+                        warning: "Make sure to double check with your advisor to see if this course works with your roadmap!",
+                        video: "INTERPERSONAL COMMUNICATION.mp4"
+
+                    },
+                    {
+                        title: "Introduction to Human Communication",
+                        description: "This course offers an overview of communication in interpersonal, group and public contexts. Students will develop a wide range of practical communication skills like listening, giving and receiving constructive feedback, presenting information, persuading audiences and more that will help them succeed in both personal and professional settings. These skills will help prepare students to engage confidently in interpersonal interactions, group discussions and public speaking.",
+                        schedule: "Summer 2025: Monday, Wednesday 1:00 PM - 4:00 PM",
+                        warning: "Make sure to double check with your advisor to see if this course works with your roadmap!",
+                        video: "INTRODUCTION TO HUMAN COMMUNICATION.mp4"
+
+                    },
+                    {
+                        title: "Intercultural Communication",
+                        description: "Theory and application of communication between people of different cultures and different national systems.",
+                        schedule: "Fall 2025: Tuesday, Thursday 2:30 PM - 3:45 PM",
+                        warning: "Make sure to double check with your advisor to see if this course works with your roadmap!",
+                        video: "INTERCULTURAL COMMUNICATION.mp4"
+
+                    }
+                ],
+                "History": [
+                    {
+                        title: "Early America: From Pre-Colonization to Civil War and Reconstruction",
+                        description: "A survey of United States history through 1877.",
+                        schedule: "Fall 2025: Monday, Wednesday, Friday 9:30 AM - 10:45 AM",
+                        warning: "Make sure to double check with your advisor to see if this course works with your roadmap!",
+                        video: "Early America.mp4"
+
+                    },
+                    {
+                        title: "World History: Ancient and Medieval",
+                        description: "World history from early human societies through the mid-17th century.",
+                        schedule: "Summer 2025: Tuesday, Thursday 10:00 AM - 1:00 PM",
+                        warning: "Make sure to double check with your advisor to see if this course works with your roadmap!",
+                        video: "WORLD HISTORY ANCIENT AND MEDIEVAL.mp4"
+
+                    },
+                    {
+                        title: "World War II",
+                        description: "Survey of one of the greatest political and military events in history, focusing especially on causes, major personalities and chief political, ideological, moral, scientific and diplomatic aspects.",
+                        schedule: "Fall 2025: Tuesday, Thursday 11:00 AM - 12:15 PM",
+                        warning: "Make sure to double check with your advisor to see if this course works with your roadmap!",
+                        video: "World War II.mp4"
+
+                    },
+                    {
+                        title: "Modern America: From Industrialization to Globalization",
+                        description: "A survey of United States history since 1877.",
+                        schedule: "Fall 2025: Monday, Wednesday 3:30 PM - 4:45 PM",
+                        warning: "Make sure to double check with your advisor to see if this course works with your roadmap!",
+                        video: "WORLD HISTORY MODERN.mp4"
+
+                    }
+                ],
+                "Chemistry": [
+                    {
+                        title: "Molecules of Life",
+                        description: "An integrated introduction to molecular systems and their participation in the processes of life.",
+                        schedule: "Fall 2025: Monday, Wednesday 10:00 AM - 11:15 AM, Friday 10:00 AM - 12:00 PM (Lab)",
+                        warning: "Make sure to double check with your advisor to see if this course works with your roadmap!",
+                        video: "MOLECULES OF LIFE.mp4"
+                    },
+                    {
+                        title: "General Chemistry I",
+                        description: "This course is a college-level chemistry course for science majors, focusing on fundamental concepts and the development of problem- solving strategies and critical thinking. Students will be introduced to a variety of concepts in modern chemistry, emphasizing stoichiometry, introduction to chemical reactions, thermochemistry, atomic structure, periodicity, molecular structure, chemical bonding, and behavior of gases.Classroom time will be divided into lectures, discussions, and problem - solving activities to enable students to develop both foundational knowledge and analytical skills. Students may only receive credit toward graduation for one of the following courses: CHEM 10050 or CHEM 10055 or CHEM 10060 or CHEM 10970 or CHEM 11060.",
+                        schedule: "Summer 2025: Monday through Thursday 9:00 AM - 11:30 AM",
+                        warning: "Make sure to double check with your advisor to see if this course works with your roadmap!",
+                        video: "GENERAL CHEMISTRY I.mp4"
+                    },
+                    {
+                        title: "Chemistry in Our World",
+                        description: "A course for non-science majors that utilizes environmental and consumer topics to introduce chemical principles and develop critical-thinking skills.",
+                        schedule: "Fall 2025: Tuesday, Thursday 1:00 PM - 2:15 PM",
+                        warning: "Make sure to double check with your advisor to see if this course works with your roadmap!",
+                        video: "CHEMISTRY IN OUR WORLD.mp4"
+                    }
+                ],
+                "Botany": [
+                    {
+                        title: "Forestry",
+                        description: "Management of the forest resource within appropriate environmental constraints for sustained use relative to watershed protection, lumber production, recreation and wildlife.",
+                        schedule: "Fall 2025: Monday, Wednesday 1:30 PM - 2:45 PM, One Saturday per month for field work",
+                        warning: "Make sure to double check with your advisor to see if this course works with your roadmap!",
+                        video: "FORESTRY.mp4"
+
+                    },
+                    {
+                        title: "Plant Physiology",
+                        description: " Introduction to biochemical processes in plants and plant cells; how plants grow and maintain their bodies through dynamic interactions with the environment.",
+                        schedule: "Summer 2025: Tuesday, Thursday 1:00 PM - 4:00 PM",
+                        warning: "Make sure to double check with your advisor to see if this course works with your roadmap!",
+                        video: "PLANT PHYSIOLOGY.mp4"
+
+                    },
+                    {
+                        title: "Wetland Ecology and Management",
+                        description: "(Slashed with BSCI 50368 and BSCI 70368) Lecture, laboratory and field study of the principles of wetland ecology including adaptations of the biota to environmental conditions, comparison among different wetland habitat types and habitat management. Lecture 3 hours, lab 3 hours weekly.",
+                        schedule: "Fall 2025: Tuesday 9:00 AM - 10:15 AM, Thursday 9:00 AM - 12:00 PM (Field work)",
+                        warning: "Make sure to double check with your advisor to see if this course works with your roadmap!",
+                        video: "WETLAND ECOLOGY AND MANAGEMENT.mp4"
+
+                    }
+                ],
+                "Accounting": [
+                    {
+                        title: "Financial Report Issues and Analysis",
+                        description: "Financial analysis and interpretation of issues relative to the balance sheet, income statement and cash flow statement. Topics include assets, liabilities, owner's equity, inter-corporate investments, revenue and expense recognition and ratio analysis. Course may not be used to fulfill requirements in the Accounting major.",
+                        schedule: "Fall 2025: Monday, Wednesday 4:00 PM - 5:15 PM",
+                        warning: "Make sure to double check with your advisor to see if this course works with your roadmap!",
+                        video: "33061     FINANCIAL REPORTING ISSUES AND ANALYSIS      .mp4"
+
+                    },
+                    {
+                        title: "Intro to Financial Accounting",
+                        description: "Introduction to the basic concepts and standards underlying financial accounting. Topics to be covered include revenue recognition, receivables, inventory, long-lived assets, liabilities and stockholders' equity. The impact of transactions on the accounting equation and financial statements (balance sheet, income statement and cash flows) is emphasized.",
+                        schedule: "Summer 2025: Monday, Wednesday, Friday 9:00 AM - 11:00 AM",
+                        warning: "Make sure to double check with your advisor to see if this course works with your roadmap!",
+                        video: "INTRO TO FINANCIAL ACCOUNTING.mp4"
+
+                    },
+                    {
+                        title: "Cost Accounting",
+                        description: "Cost accounting for manufacturing and service organizations, including cost determination, cost analysis, costing systems, cost-volume-profit analysis, budgeting, cost allocation, activity-based costing, capital investment and performance measurement. Computer application skills are emphasized.",
+                        schedule: "Fall 2025: Tuesday, Thursday 5:30 PM - 6:45 PM",
+                        warning: "Make sure to double check with your advisor to see if this course works with your roadmap!",
+                        video: "COST ACCOUNTING.mp4"
+
+                    }
+                ],
+
+                "Architecture": [
+                    {
+                        title: "American Architecture: Colonial to 1900",
+                        description: "History of American architecture for Spanish, French, Dutch and English colonization through the 19th century.",
+                        schedule: "Fall 2025: Monday, Wednesday 1:00 PM - 4:00 PM",
+                        warning: "Make sure to double check with your advisor to see if this course works with your roadmap!",
+                        video: "AMERICAN ARCHITECTURE.mp4"
+                    },
+                    {
+                        title: "The Skyscarper",
+                        description: "(Slashed with ARCH 55240) A study of skyscrapers from the standpoint of architectural, financial, structural, psychological and technological considerations. Emphasis is placed on the early developments in Chicago and New York, the influence of the international style and the current trends in ultra-high skyscrapers built outside the United States.",
+                        schedule: "Summer 2025: Tuesday, Thursday 9:00 AM - 12:00 PM",
+                        warning: "Make sure to double check with your advisor to see if this course works with your roadmap!",
+                        video: "THE SKYSCRAPER.mp4"
+                    },
+                    {
+                        title: "Renaissance Architecture",
+                        description: "Survey of architectural history from ancient civilizations to the present, examining the relationship between built form, cultural context, and theoretical frameworks.",
+                        schedule: "Fall 2025: Tuesday, Thursday 3:00 PM - 4:30 PM",
+                        warning: "Make sure to double check with your advisor to see if this course works with your roadmap!",
+                        video: "RENAISSANCE ARCHITECTURE.mp4"
+                    }
+                ]
+            };
+
+            // Function to display course details
+            function displayCourseDetails(course) {
+                document.getElementById('course-title').textContent = course.title;
+                document.getElementById('course-description').textContent = course.description;
+                document.getElementById('course-schedule').textContent = course.schedule;
+                document.getElementById('course-warning').textContent = course.warning;
+
+                // Update video source and show video player immediately
+                const videoElement = document.querySelector('.video-player');
+                const videoSource = videoElement.querySelector('source');
+                const videoPath = course.video ? `Videos/${course.video}` : '';
+                videoSource.src = videoPath;
+                videoElement.load(); // Reload the video element with new source
+
+                // Show video element, hide play button
+                videoElement.style.display = 'block';
+                document.querySelector('.play-button').style.display = 'none';
+            }
+
+            // Function to create course list for a subject
+            function createCourseList(subject) {
+                console.log(`Creating course list for subject: "${subject}"`);
+
+                const courseListElement = document.getElementById('course-list');
+                document.getElementById('subject-title').textContent = subject;
+
+                // Clear existing courses
+                courseListElement.innerHTML = '';
+
+                // Add courses for the subject
+                if (courseData[subject]) {
+                    console.log(`Found ${courseData[subject].length} courses for "${subject}"`);
+
+                    courseData[subject].forEach(course => {
+                        console.log(`Adding course: ${course.title}`);
+                        const courseElement = document.createElement('div');
+                        courseElement.className = 'course-item';
+                        courseElement.textContent = course.title;
+
+                        courseElement.addEventListener('click', () => {
+                            // Remove selected class from all courses
+                            document.querySelectorAll('.course-item').forEach(item => {
+                                item.classList.remove('selected');
+                            });
+
+                            // Add selected class to clicked course
+                            courseElement.classList.add('selected');
+
+                            // Display course details
+                            displayCourseDetails(course);
+                        });
+
+                        courseListElement.appendChild(courseElement);
+                    });
+                } else {
+                    console.log(`No courses found for subject: "${subject}"`);
+                    courseListElement.innerHTML = '<div>No courses available</div>';
+                }
+            }
+
+            // Function to handle subject change from dropdown
+            function changeSubject() {
+                const selector = document.getElementById('subject-selector');
+                const selectedSubject = selector.value;
+                console.log("Changed subject to:", selectedSubject);
+
+                // Update subject in localStorage
+                localStorage.setItem('selectedSubject', selectedSubject);
+
+                // Create course list for selected subject
+                createCourseList(selectedSubject);
+
+                // Select first course by default
+                setTimeout(() => {
+                    const firstCourse = document.querySelector('.course-item');
+                    if (firstCourse) {
+                        firstCourse.click();
+                    }
+                }, 100);
+            }
+
+            // Initialize page on load
+            document.addEventListener('DOMContentLoaded', function () {
+                console.log("Page loaded, initializing...");
+
+                // Set up play button behavior for actual video playback
+                document.querySelector('.play-button').addEventListener('click', function () {
+                    const videoElement = document.querySelector('.video-player');
+
+                    // Hide play button and show video
+                    this.style.display = 'none';
+                    videoElement.style.display = 'block';
+
+                    // Start playing the video
+                    videoElement.play().catch(error => {
+                        console.error("Error playing video:", error);
+                        // Show a message if video can't be played
+                        if (error.name === "NotAllowedError") {
+                            alert("Video playback requires user interaction first. Please click the video to play.");
+                        } else if (error.name === "NotFoundError" || videoElement.querySelector('source').src === '') {
+                            alert("Video file not found. Please check the video path.");
+                        } else {
+                            alert("Error playing video: " + error.message);
+                        }
+                        // Show play button again
+                        this.style.display = 'flex';
+                    });
+                });
+
+                // Get selected subject from localStorage if available
+                const storedSubject = localStorage.getItem('selectedSubject');
+                console.log("Subject from localStorage:", storedSubject);
+
+                // Set the dropdown to the stored subject
+                if (storedSubject) {
+                    const selector = document.getElementById('subject-selector');
+
+                    // Find the option with matching value
+                    for (let i = 0; i < selector.options.length; i++) {
+                        if (selector.options[i].value === storedSubject) {
+                            selector.selectedIndex = i;
+                            break;
+                        }
+                    }
+                }
+
+                // Load courses for the selected subject (from dropdown)
+                const selectedSubject = document.getElementById('subject-selector').value;
+                console.log("Initial subject from dropdown:", selectedSubject);
+                createCourseList(selectedSubject);
+
+                // Select first course by default
+                setTimeout(() => {
+                    const firstCourse = document.querySelector('.course-item');
+                    if (firstCourse) {
+                        console.log("Auto-selecting first course:", firstCourse.textContent);
+                        firstCourse.click();
+                    }
+                }, 100);
+            });
+        </script>
+</body>
+
+</html>
