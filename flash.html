@@ -9,6 +9,7 @@
         integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
         integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bona+Nova+SC&display=swap">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <style>
         body,
@@ -17,22 +18,36 @@
             margin: 0;
             background-color: #1B2A47;
             color: white;
+            overflow: hidden;
+        }
+
+        .container-fluid {
+            padding: 0;
+            height: 100vh;
+        }
+
+        .row {
+            margin: 0;
+            height: 100%;
         }
 
         .chat {
-            margin-top: auto;
-            margin-bottom: auto;
+            height: 100%;
+            padding: 0;
         }
 
         .card {
-            height: 600px;
-            border-radius: 15px !important;
+            height: 100vh;
+            border-radius: 0 !important;
             background-color: rgba(0, 0, 0, 0.4) !important;
+            margin: 0;
+            border: none;
         }
 
         .msg_card_body {
             overflow-y: auto;
-            height: 400px;
+            height: calc(100vh - 140px);
+            /* Adjust for header and footer */
             scrollbar-width: thin;
             scrollbar-color: #888 #f1f1f1;
         }
@@ -51,17 +66,20 @@
         }
 
         .card-header {
-            border-radius: 15px 15px 0 0 !important;
+            border-radius: 0 !important;
             border-bottom: 0 !important;
             background-color: rgba(0, 0, 0, 0.3) !important;
             padding: 15px !important;
         }
 
         .card-footer {
-            border-radius: 0 0 15px 15px !important;
+            border-radius: 0 !important;
             border-top: 0 !important;
             background-color: rgba(0, 0, 0, 0.3) !important;
             padding: 10px 20px !important;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
         }
 
         .type_msg {
@@ -145,6 +163,28 @@
             margin: 0;
         }
 
+        .back-link {
+            position: absolute;
+            right: 20px;
+            top: 25px;
+        }
+
+        .back-link a {
+            color: white;
+            text-decoration: underline;
+            font-size: 16px;
+            font-weight: bold;
+            font-family: serif;
+            background-color: rgba(0, 0, 0, 0.3);
+            padding: 8px 15px;
+            border-radius: 15px;
+            transition: background-color 0.3s;
+        }
+
+        .back-link a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
         .msg_cotainer {
             margin-top: auto;
             margin-bottom: auto;
@@ -219,24 +259,39 @@
                 opacity: 0.5;
             }
         }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .col-md-8 {
+                flex: 0 0 100%;
+                max-width: 100%;
+            }
+
+            .msg_card_body {
+                height: calc(100vh - 130px);
+            }
+        }
     </style>
 </head>
 
 <body>
     <div class="container-fluid h-100">
         <div class="row justify-content-center h-100">
-            <div class="col-md-8 col-xl-6 chat">
+            <div class="col-md-12 chat">
                 <div class="card">
                     <div class="card-header msg_head">
                         <div class="d-flex bd-highlight">
                             <div class="img_cont">
-                                <img src="https://i.ibb.co/fSNP7Rz/icons8-chatgpt-512.png"
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/f/f3/Kent_State_K_logo.png"
                                     class="rounded-circle user_img" alt="AI Academic Advisor Logo">
                                 <span class="online_icon"></span>
                             </div>
                             <div class="user_info">
                                 <span>AI Academic Advisor</span>
                                 <p>Ask me anything about courses, majors, or academic life!</p>
+                            </div>
+                            <div class="back-link">
+                                <a href="index.html">Back to Home</a>
                             </div>
                         </div>
                     </div>
@@ -479,7 +534,7 @@
 
             // Display welcome message
             function showWelcomeMessage() {
-                const welcomeHtml = '<div class="d-flex justify-content-start mb-4"><div class="img_cont_msg"><img src="https://i.ibb.co/fSNP7Rz/icons8-chatgpt-512.png" class="rounded-circle user_img_msg" alt="AI Assistant"></div><div class="msg_cotainer">Welcome to the AI Academic Advisor! How can I help you today?<span class="msg_time">Now</span></div></div>';
+                const welcomeHtml = '<div class="d-flex justify-content-start mb-4"><div class="img_cont_msg"><img src="https://mascothalloffame.com/wp-content/uploads/bb-plugin/cache/kentstate-e1678839414693-circle.png" class="rounded-circle user_img_msg" alt="AI Assistant"></div><div class="msg_cotainer">Welcome to the AI Academic Advisor! How can I help you today?<span class="msg_time">Now</span></div></div>';
                 $("#messageFormeight").append(welcomeHtml);
             }
 
@@ -488,7 +543,7 @@
 
             // Function to show typing indicator
             function showTypingIndicator() {
-                const typingHtml = '<div id="typing-indicator" class="d-flex justify-content-start mb-4"><div class="img_cont_msg"><img src="https://i.ibb.co/fSNP7Rz/icons8-chatgpt-512.png" class="rounded-circle user_img_msg" alt="AI Assistant"></div><div class="msg_cotainer">Thinking<div class="typing-indicator"><span></span><span></span><span></span></div></div></div>';
+                const typingHtml = '<div id="typing-indicator" class="d-flex justify-content-start mb-4"><div class="img_cont_msg"><img src="https://mascothalloffame.com/wp-content/uploads/bb-plugin/cache/kentstate-e1678839414693-circle.png" class="rounded-circle user_img_msg" alt="AI Assistant"></div><div class="msg_cotainer">Thinking<div class="typing-indicator"><span></span><span></span><span></span></div></div></div>';
                 $("#messageFormeight").append(typingHtml);
                 $("#messageFormeight").scrollTop($("#messageFormeight")[0].scrollHeight);
             }
@@ -510,7 +565,7 @@
                 // Create and display user message
                 const safeText = escapeHtml(rawText);
                 const userHtml = '<div class="d-flex justify-content-end mb-4"><div class="msg_cotainer_send">' + safeText + '<span class="msg_time_send">' + str_time +
-                    '</span></div><div class="img_cont_msg"><img src="https://i.ibb.co/d5b84Xw/Untitled-design.png" class="rounded-circle user_img_msg" alt="User"></div></div>';
+                    '</span></div><div class="img_cont_msg"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Antu_amarok_artist.svg/1920px-Antu_amarok_artist.svg.png" class="rounded-circle user_img_msg" alt="User"></div></div>';
 
                 $("#text").val(""); // Clear input field
                 $("#messageFormeight").append(userHtml);
@@ -527,7 +582,7 @@
                     // Generate and display AI response
                     const aiResponse = generateResponse(rawText);
                     const safeResponse = escapeHtml(aiResponse);
-                    const botHtml = '<div class="d-flex justify-content-start mb-4"><div class="img_cont_msg"><img src="https://i.ibb.co/fSNP7Rz/icons8-chatgpt-512.png" class="rounded-circle user_img_msg" alt="AI Assistant"></div><div class="msg_cotainer">' + safeResponse + '<span class="msg_time">' + getCurrentTime() + '</span></div></div>';
+                    const botHtml = '<div class="d-flex justify-content-start mb-4"><div class="img_cont_msg"><img src="https://mascothalloffame.com/wp-content/uploads/bb-plugin/cache/kentstate-e1678839414693-circle.png" class="rounded-circle user_img_msg" alt="AI Assistant"></div><div class="msg_cotainer">' + safeResponse + '<span class="msg_time">' + getCurrentTime() + '</span></div></div>';
                     $("#messageFormeight").append(botHtml);
                     $("#messageFormeight").scrollTop($("#messageFormeight")[0].scrollHeight);
                 }, Math.floor(Math.random() * 1000) + 1000);
