@@ -307,9 +307,13 @@ body {
 }
 
 .card {
-    height: 600px;
-    border-radius: 15px !important;
+    height: 100vh;
+    border-radius: 0 !important;
     background-color: rgba(0, 0, 0, 0.4) !important;
+    margin: 0;
+    border: none;
+    display: flex;
+    flex-direction: column;
 }
 
 .contacts_body {
@@ -320,20 +324,27 @@ body {
 
 .msg_card_body {
     overflow-y: auto;
-    height: 400px;
+    height: calc(100vh - 140px);
+    scrollbar-width: thin;
+    scrollbar-color: #888 #f1f1f1;
+    padding-bottom: 120px !important;
+    flex: 1;
 }
 
 .card-header {
     border-radius: 15px 15px 0 0 !important;
     border-bottom: 0 !important;
     background-color: rgba(0, 0, 0, 0.3) !important;
+    flex-shrink: 0;
 }
 
 .card-footer {
-    border-radius: 0 0 15px 15px !important;
-    border-top: 0 !important;
     background-color: rgba(0, 0, 0, 0.3) !important;
-    padding: 10px 15px !important;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    z-index: 1000;
+    flex-shrink: 0;
 }
 
 .container {
@@ -472,33 +483,19 @@ body {
 }
 
 .msg_cotainer {
-    margin-top: auto;
-    margin-bottom: auto;
-    margin-left: 10px;
-    border-radius: 25px;
+    margin-bottom: 50px !important;
     background-color: rgb(82, 172, 255);
-    padding: 10px;
-    position: relative;
-    max-width: 80%;
-    word-wrap: break-word;
 }
 
 .msg_cotainer_send {
-    margin-top: auto;
-    margin-bottom: auto;
-    margin-right: 10px;
-    border-radius: 25px;
-    background-color: #58cc71;
-    padding: 10px;
-    position: relative;
-    max-width: 80%;
-    word-wrap: break-word;
+    margin-bottom: 50px !important;
+    background-color: rgb(82, 172, 255);
 }
 
 .msg_time {
     position: absolute;
     left: 0;
-    bottom: -15px;
+    bottom: -30px !important;
     color: rgba(255, 255, 255, 0.5);
     font-size: 10px;
 }
@@ -506,7 +503,7 @@ body {
 .msg_time_send {
     position: absolute;
     right: 0;
-    bottom: -15px;
+    bottom: -30px !important;
     color: rgba(255, 255, 255, 0.5);
     font-size: 10px;
 }
@@ -557,6 +554,23 @@ body {
     background-color: rgba(0, 0, 0, 0.2);
 }
 
+.chat-message {
+    margin-bottom: 45px !important;
+    position: relative;
+    clear: both;
+}
+
+.chat-message:last-child {
+    margin-bottom: 150px !important;
+}
+
+.msg_card_body::after {
+    content: "";
+    display: block;
+    height: 120px;
+    width: 100%;
+}
+
 @media (max-width: 768px) {
     .content-boxes {
         flex-direction: column;
@@ -581,6 +595,8 @@ body {
     }
 
     .msg_card_body {
-        height: 320px;
+        overflow-y: auto;
+        height: 400px;
+        padding-bottom: 80px;
     }
 }
