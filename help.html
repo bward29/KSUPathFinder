@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Academic Advisor - Help</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+        integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
+    <style>
+        body {
+            background-color: #1B2A47;
+            color: white;
+            font-family: Arial, Helvetica, sans-serif;
+            padding: 30px;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .help-card {
+            background-color: rgba(0, 0, 0, 0.4);
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        .help-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            padding-bottom: 20px;
+        }
+
+        .help-logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .help-logo img {
+            height: 50px;
+            margin-right: 15px;
+            border-radius: 50%;
+            border: 1.5px solid #f5f6fa;
+        }
+
+        .help-logo h1 {
+            margin: 0;
+            font-size: 24px;
+            font-family: 'Bona Nova SC', serif;
+        }
+
+        .back-btn {
+            background-color: rgba(0, 0, 0, 0.3);
+            color: white;
+            text-decoration: underline;
+            font-size: 16px;
+            font-weight: bold;
+            font-family: serif;
+            padding: 8px 15px;
+            border-radius: 15px;
+            transition: background-color 0.3s;
+        }
+
+        .back-btn:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            text-decoration: none;
+        }
+
+        h2 {
+            color: #58cc71;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            border-left: 4px solid #58cc71;
+            padding-left: 15px;
+            font-family: 'Bona Nova SC', serif;
+        }
+
+        .question-example {
+            background-color: rgba(82, 172, 255, 0.2);
+            border-left: 4px solid rgb(82, 172, 255);
+            padding: 10px 15px;
+            margin: 10px 0;
+            border-radius: 0 5px 5px 0;
+            font-family: 'Bona Nova SC', serif;
+        }
+
+        .tip-box {
+            background-color: rgba(255, 193, 7, 0.1);
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .tip-box h4 {
+            color: #ffc107;
+            margin-top: 0;
+            font-family: 'Bona Nova SC', serif;
+        }
+
+        table {
+            width: 100%;
+            margin: 20px 0;
+            border-collapse: collapse;
+            font-family: 'Bona Nova SC', serif;
+        }
+
+        th,
+        td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        th {
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+
+        tr:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        p,
+        ul,
+        li {
+            font-family: 'Bona Nova SC', serif;
+        }
+
+        @media (max-width: 768px) {
+            .help-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .help-logo {
+                margin-bottom: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="help-card">
+            <div class="help-header">
+                <div class="help-logo">
+                    <img src="https://mascothalloffame.com/wp-content/uploads/bb-plugin/cache/kentstate-e1678839414693-circle.png"
+                        alt="Logo">
+                    <h1>AI Academic Advisor Help</h1>
+                </div>
+                <a href="flash.html" class="back-btn">Back to Advisor</a>
+            </div>
+
+            <h2>Getting Started</h2>
+            <p>
+                The AI Academic Advisor is designed to help you find information about courses, majors, registration,
+                deadlines, financial aid, and campus resources. Simply type your question in the chat box and
+                press Enter or click the send button.
+            </p>
+
+            <div class="tip-box">
+                <h4>Quick Tip</h4>
+                <p>Be specific with your questions to get the most accurate information. The more details you provide,
+                    the better the advisor can help you.</p>
+            </div>
+
+            <h2>Example Questions</h2>
+            <p>Here are some examples of questions you can ask the AI Academic Advisor:</p>
+
+            <div class="question-example">
+                What you tell me about the Computer Science major?
+            </div>
+            <div class="question-example">
+                When does fall registration begin?
+            </div>
+            <div class="question-example">
+                What is the tuition rate for in-state students?
+            </div>
+            <div class="question-example">
+                Can you provide information about CS35101?
+            </div>
+            <div class="question-example">
+                What academic resources are available on campus?
+            </div>
+            <div class="question-example">
+                What is the GPA requirement for good academic standing?
+            </div>
+
+            <h2>Topic Categories</h2>
+            <p>The AI Academic Advisor can provide information on the following topics:</p>
+
+            <table>
+                <tr>
+                    <th>Category</th>
+                    <th>Examples</th>
+                </tr>
+                <tr>
+                    <td>Courses</td>
+                    <td>Course details, prerequisites, credit hours</td>
+                </tr>
+                <tr>
+                    <td>Majors</td>
+                    <td>Degree programs, requirements, career opportunities</td>
+                </tr>
+                <tr>
+                    <td>Registration</td>
+                    <td>Registration dates, process, course load</td>
+                </tr>
+                <tr>
+                    <td>Academic Calendar</td>
+                    <td>Semester dates, breaks, final exam periods</td>
+                </tr>
+                <tr>
+                    <td>Financial Information</td>
+                    <td>Tuition rates, payment deadlines, financial aid</td>
+                </tr>
+                <tr>
+                    <td>Campus Resources</td>
+                    <td>Academic Success Center, Writing Center, Library</td>
+                </tr>
+                <tr>
+                    <td>Academic Policies</td>
+                    <td>Standing, grading, honors, enrollment requirements</td>
+                </tr>
+            </table>
+
+            <h2>Troubleshooting</h2>
+            <p>If you're not getting the information you need:</p>
+            <ul>
+                <li>Try rephrasing your question with more specific details</li>
+                <li>Check if your question falls into one of the topic categories listed above</li>
+                <li>For complex questions, break them down into simpler questions</li>
+                <li>If you need human assistance, please contact Benjamin Ward at bward29@kent.edu</li>
+            </ul>
+
+            <div class="tip-box">
+                <h4>Remember</h4>
+                <p>The AI Academic Advisor provides general information and guidance. For personalized academic
+                    planning,
+                    please schedule an appointment with your academic advisor.</p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

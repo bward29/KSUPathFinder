@@ -8,6 +8,55 @@
     <title>Class Search</title>
     <link rel="stylesheet" href="styles.css">
     <style>
+        * {
+            font-family: serif !important;
+        }
+
+        body {
+            background-color: #1B2A47;
+            color: white;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .page-title {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            text-decoration: underline;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .back-link {
+            margin-left: auto;
+        }
+
+        .back-link a {
+            color: white;
+            text-decoration: underline;
+            font-size: 16px;
+            font-weight: bold;
+            font-family: serif;
+            background-color: rgba(0, 0, 0, 0.3);
+            padding: 8px 15px;
+            border-radius: 15px;
+            transition: background-color 0.3s;
+        }
+
+        .back-link a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
         /* Additional styles to ensure all subjects are visible */
         .scrollable-list {
             overflow-y: auto !important;
@@ -24,18 +73,84 @@
             border-radius: 3px;
         }
 
+        .list-item:hover {
+            background-color: #3a4e6c;
+        }
+
+        .list-item.selected {
+            background-color: #4a5e7c;
+            font-weight: bold;
+        }
+
         .subject-item:last-child {
             margin-bottom: 30px;
             border-bottom: 2px solid #4a5e7c;
             padding-bottom: 15px;
+        }
+
+        .content-boxes {
+            display: flex;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .box-container {
+            flex: 1;
+        }
+
+        .box {
+            border: 2px solid white;
+            padding: 20px;
+            height: 60vh;
+            border-radius: 5px;
+        }
+
+        h2 {
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+
+        .button-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        #search-button {
+            background-color: #2b59c4;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            text-align: center;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-weight: bold;
+        }
+
+        #search-button:hover {
+            background-color: #e0cf17;
+        }
+
+        @media (max-width: 768px) {
+            .content-boxes {
+                flex-direction: column;
+            }
+
+            .box {
+                height: auto;
+                min-height: 300px;
+            }
         }
     </style>
 </head>
 
 <body>
     <div class="header">
-        <a href="index.html">Back to Home</a>
-        <span>Class Search</span>
+        <div class="page-title">Class Search</div>
+        <div class="back-link">
+            <a href="index.html">Back to Home</a>
+        </div>
     </div>
 
     <div class="content-boxes">
