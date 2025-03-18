@@ -31,17 +31,21 @@ body {
 .content-boxes {
     display: flex;
     gap: 20px;
+    align-items: stretch;
 }
 
 .box-container {
     flex: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 .box {
     border: 2px solid white;
     padding: 20px;
-    height: 60vh;
+    height: 70vh;
     border-radius: 5px;
+    overflow-y: auto;
 }
 
 .image-container {
@@ -173,6 +177,7 @@ body {
     height: calc(100% - 50px);
     overflow-y: auto;
     margin-top: 15px;
+    max-height: 60vh;
 }
 
 .list-item {
@@ -576,13 +581,13 @@ body {
         flex-direction: column;
     }
 
-    .header {
-        font-size: 20px;
-    }
-
     .box {
         height: auto;
         min-height: 300px;
+    }
+
+    .header {
+        font-size: 20px;
     }
 
     .current-weather {
