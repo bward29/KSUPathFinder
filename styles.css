@@ -599,6 +599,7 @@ body {
         height: 400px;
         padding-bottom: 80px;
     }
+
     .modal {
         position: fixed;
         top: 0;
@@ -611,5 +612,5 @@ body {
         align-items: center;
         z-index: 1000;
     }
-    
+
 }
