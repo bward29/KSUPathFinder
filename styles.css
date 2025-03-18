@@ -74,29 +74,24 @@ body {
 }
 
 .event {
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     padding: 10px;
-    border-radius: 4px;
-    background-color: rgba(42, 62, 92, 0.5);
-}
-
-.event.featured {
-    background-color: rgba(255, 255, 255, 0.85);
+    color: white;
 }
 
 .event h3 {
-    font-size: 1em;
     margin: 0;
+    color: inherit;
 }
 
 .event h4 {
-    font-size: 0.95em;
-    margin: 3px 0;
+    margin: 5px 0;
+    color: inherit;
 }
 
 .event p {
-    font-size: 0.9em;
-    margin: 3px 0;
+    margin: 5px 0;
+    color: inherit;
 }
 
 .featured {
@@ -112,14 +107,7 @@ body {
 
 .weather-header h3 {
     font-size: 2em;
-    margin-top: 0;
-    margin-bottom: 15px;
-    padding-top: 0;
-}
-
-.weather-header {
-    margin-top: 0;
-    padding-top: 5px;
+    margin-bottom: 20px;
 }
 
 .location-temp {
@@ -148,19 +136,11 @@ body {
 .description {
     margin: 5px 0;
     text-transform: capitalize;
-    font-size: medium;
-}
-
-#weather-display {
-    padding-top: 10px;
+    font-size: large;
 }
 
 .weather-details {
     margin-top: 20px;
-}
-
-.weather-content {
-    margin-top: 5px;
 }
 
 .weather-details p {
@@ -259,19 +239,6 @@ body {
 .video-box video {
     display: block;
     width: 100%;
-}
-
-.box::-webkit-scrollbar {
-    width: 5px;
-}
-
-.box::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.1);
-}
-
-.box::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.3);
-    border-radius: 3px;
 }
 
 .video-error {
@@ -610,7 +577,7 @@ body {
     }
 
     .header {
-        font-size: 10px;
+        font-size: 20px;
     }
 
     .box {
@@ -632,18 +599,4 @@ body {
         height: 400px;
         padding-bottom: 80px;
     }
-
-    .modal {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.5);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 1000;
-    }
-
 }
