@@ -134,7 +134,6 @@
             background-color: rgba(255, 255, 255, 0.2);
             border-radius: 50%;
             display: none;
-            /* Hidden by default now */
             align-items: center;
             justify-content: center;
             cursor: pointer;
@@ -209,7 +208,6 @@
             <img src="KSU Pathfinder.png" alt="Header image" class="header-image">
         </div>
 
-        <!-- Added subject selector dropdown with accessible label -->
         <div class="selector">
             <label for="subject-selector">Select a Subject:</label>
             <select id="subject-selector" aria-label="Select a subject" title="Select a subject"
@@ -268,7 +266,6 @@
         </div>
 
         <script>
-            // Course data organized by subject
             const courseData = {
                 "Computer Science": [
                     {
@@ -506,41 +503,33 @@
                 ]
             };
 
-            // Function to display course details
             function displayCourseDetails(course) {
                 document.getElementById('course-title').textContent = course.title;
                 document.getElementById('course-description').textContent = course.description;
                 document.getElementById('course-schedule').textContent = course.schedule;
                 document.getElementById('course-warning').textContent = course.warning;
 
-                // Update video source and show video player immediately
                 const videoElement = document.querySelector('.video-player');
                 const videoSource = videoElement.querySelector('source');
 
-                // Ensure the path is correct - use lowercase names with hyphens
                 const videoPath = course.video ? `videos/${course.video}` : '';
                 videoSource.src = videoPath;
-                videoElement.load(); // Reload the video element with new source
+                videoElement.load();
 
-                // Log the video path for debugging
                 console.log(`Loading video: ${videoPath}`);
 
-                // Show video element, hide play button
                 videoElement.style.display = 'block';
                 document.querySelector('.play-button').style.display = 'none';
             }
 
-            // Function to create course list for a subject
             function createCourseList(subject) {
                 console.log(`Creating course list for subject: "${subject}"`);
 
                 const courseListElement = document.getElementById('course-list');
                 document.getElementById('subject-title').textContent = subject;
 
-                // Clear existing courses
                 courseListElement.innerHTML = '';
 
-                // Add courses for the subject
                 if (courseData[subject]) {
                     console.log(`Found ${courseData[subject].length} courses for "${subject}"`);
 
@@ -551,15 +540,12 @@
                         courseElement.textContent = course.title;
 
                         courseElement.addEventListener('click', () => {
-                            // Remove selected class from all courses
                             document.querySelectorAll('.course-item').forEach(item => {
                                 item.classList.remove('selected');
                             });
 
-                            // Add selected class to clicked course
                             courseElement.classList.add('selected');
 
-                            // Display course details
                             displayCourseDetails(course);
                         });
 
@@ -571,19 +557,15 @@
                 }
             }
 
-            // Function to handle subject change from dropdown
             function changeSubject() {
                 const selector = document.getElementById('subject-selector');
                 const selectedSubject = selector.value;
                 console.log("Changed subject to:", selectedSubject);
 
-                // Update subject in localStorage
                 localStorage.setItem('selectedSubject', selectedSubject);
 
-                // Create course list for selected subject
                 createCourseList(selectedSubject);
 
-                // Select first course by default
                 setTimeout(() => {
                     const firstCourse = document.querySelector('.course-item');
                     if (firstCourse) {
@@ -592,22 +574,17 @@
                 }, 100);
             }
 
-            // Initialize page on load
             document.addEventListener('DOMContentLoaded', function () {
                 console.log("Page loaded, initializing...");
 
-                // Set up play button behavior for actual video playback
                 document.querySelector('.play-button').addEventListener('click', function () {
                     const videoElement = document.querySelector('.video-player');
 
-                    // Hide play button and show video
                     this.style.display = 'none';
                     videoElement.style.display = 'block';
 
-                    // Start playing the video
                     videoElement.play().catch(error => {
                         console.error("Error playing video:", error);
-                        // Show a message if video can't be played
                         if (error.name === "NotAllowedError") {
                             alert("Video playback requires user interaction first. Please click the video to play.");
                         } else if (error.name === "NotFoundError" || videoElement.querySelector('source').src === '') {
@@ -615,20 +592,16 @@
                         } else {
                             alert("Error playing video: " + error.message);
                         }
-                        // Show play button again
                         this.style.display = 'flex';
                     });
                 });
 
-                // Get selected subject from localStorage if available
                 const storedSubject = localStorage.getItem('selectedSubject');
                 console.log("Subject from localStorage:", storedSubject);
 
-                // Set the dropdown to the stored subject
                 if (storedSubject) {
                     const selector = document.getElementById('subject-selector');
 
-                    // Find the option with matching value
                     for (let i = 0; i < selector.options.length; i++) {
                         if (selector.options[i].value === storedSubject) {
                             selector.selectedIndex = i;
@@ -637,12 +610,10 @@
                     }
                 }
 
-                // Load courses for the selected subject (from dropdown)
                 const selectedSubject = document.getElementById('subject-selector').value;
                 console.log("Initial subject from dropdown:", selectedSubject);
                 createCourseList(selectedSubject);
 
-                // Select first course by default
                 setTimeout(() => {
                     const firstCourse = document.querySelector('.course-item');
                     if (firstCourse) {

@@ -57,7 +57,6 @@
             background-color: rgba(255, 255, 255, 0.2);
         }
 
-        /* Additional styles to ensure all subjects are visible */
         .scrollable-list {
             overflow-y: auto !important;
             max-height: 600px !important;
@@ -200,42 +199,32 @@
     </div>
 
     <script>
-        // Track selected options
         const selectedOptions = {
             subject: null,
             level: null,
             term: null
         };
 
-        // Function to handle selection of options
         function selectOption(element, category) {
-            // Don't allow selection of "Coming Soon" items
             if (element.classList.contains('coming-soon')) {
                 return;
             }
 
-            // Remove selected class from all options in the category
             const options = document.querySelectorAll(`#${category}-list .list-item`);
             options.forEach(option => {
                 option.classList.remove('selected');
             });
 
-            // Add selected class to clicked option
             element.classList.add('selected');
 
-            // Update selected option
             selectedOptions[category] = element.textContent.trim();
             console.log(`Selected ${category}:`, selectedOptions[category]);
         }
 
-        // Function to handle search button click
         function searchCourses() {
-            // Check if at least a subject is selected
             if (selectedOptions.subject) {
-                // Store the selected subject in localStorage to avoid URL parameter issues
                 localStorage.setItem('selectedSubject', selectedOptions.subject);
 
-                // Navigate to the video page
                 window.location.href = "class-search-video.html";
                 console.log("Selected subject saved:", selectedOptions.subject);
             } else {
@@ -243,13 +232,10 @@
             }
         }
 
-        // Force scroll check after page loads
         document.addEventListener('DOMContentLoaded', function () {
-            // Ensure all subjects are visible by forcing scrolling reset
             const subjectList = document.getElementById('subject-list');
             subjectList.scrollTop = 0;
 
-            // Log the number of subjects for debugging
             console.log("Total subjects:", document.querySelectorAll('#subject-list .list-item').length);
         });
     </script>
