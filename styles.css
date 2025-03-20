@@ -172,7 +172,6 @@ body {
     margin: 10px 0;
 }
 
-/* Class Search Page Styles */
 .scrollable-list {
     height: calc(100% - 50px);
     overflow-y: auto;
@@ -220,7 +219,6 @@ body {
     background-color: #e0cf17;
 }
 
-/* Class Video Page Styles */
 .class-header {
     text-align: center;
     margin-bottom: 20px;
@@ -305,7 +303,6 @@ body {
     border-radius: 5px;
 }
 
-/* For Flash AI Academic Advisor - FIXED STYLES */
 .chat {
     margin-top: auto;
     margin-bottom: auto;
