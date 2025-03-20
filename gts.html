@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -34,7 +35,6 @@
             line-height: 1.6;
         }
 
-        /* Force all text in white containers to be dark blue */
         .student-info-card *,
         .progress-card *,
         .requirement-section *,
@@ -42,14 +42,14 @@
             color: #1B2A47 !important;
         }
 
-        /* Exceptions for specific elements */
         .status-indicator.status-complete *,
         .status-indicator.status-incomplete *,
         .status-indicator.status-inprogress * {
             color: white !important;
         }
 
-        a, a * {
+        a,
+        a * {
             color: #0033A0 !important;
         }
 
@@ -74,7 +74,7 @@
             font-weight: bold;
             margin-top: 10px;
         }
-        
+
         .back-link {
             color: white !important;
             text-decoration: underline;
@@ -84,31 +84,31 @@
             align-items: center;
             gap: 8px;
         }
-        
+
         .back-link i {
             color: white !important;
         }
-        
+
         .back-link:hover {
             text-decoration: underline;
             opacity: 0.9;
             color: white !important;
         }
-        
-        /* Override any default link colors that might be affecting this */
+
         a.back-link {
             color: white !important;
         }
-        
-        /* Make sure our more general link styling isn't affecting this */
-        a, a * {
+
+        a,
+        a * {
             color: #0033A0 !important;
         }
-        
-        a.back-link, a.back-link * {
+
+        a.back-link,
+        a.back-link * {
             color: white !important;
         }
-        
+
         .back-link:hover {
             text-decoration: underline;
         }
@@ -172,7 +172,7 @@
         .info-field .value {
             font-size: 16px;
             font-weight: 600;
-            color: #1B2A47; /* Dark blue - high contrast against white background */
+            color: #1B2A47;
         }
 
         .student-info-details {
@@ -391,16 +391,15 @@
             font-weight: 500;
         }
 
-        /* Responsive adjustments */
         @media (max-width: 768px) {
             .student-info-header {
                 grid-template-columns: 1fr;
             }
-            
+
             .student-info-details {
                 grid-template-columns: repeat(2, 1fr);
             }
-            
+
             .progress-overview {
                 flex-direction: column;
                 gap: 15px;
@@ -408,14 +407,14 @@
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <div class="page-header">
             <h1>Graduation Tracking System</h1>
             <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Home</a>
         </div>
-        
-        <!-- Student Information Card -->
+
         <div class="student-info-card">
             <div class="student-info-header">
                 <div class="info-field">
@@ -478,16 +477,14 @@
                 <div class="value">Spring 2026</div>
             </div>
         </div>
-        
-        <!-- Tab Navigation -->
+
         <div class="tab-container">
             <div class="tabs">
                 <div class="tab active">Academic</div>
                 <div class="tab">What-If</div>
             </div>
         </div>
-        
-        <!-- Progress Card -->
+
         <div class="progress-card">
             <div class="progress-overview">
                 <div class="progress-item">
@@ -514,8 +511,7 @@
                 <button class="btn btn-primary">Process</button>
             </div>
         </div>
-        
-        <!-- Main Degree Requirements -->
+
         <div class="requirement-section">
             <div class="requirement-header">
                 <h2 class="requirement-title">
@@ -531,7 +527,7 @@
                     <div class="requirement-detail">Catalog year: 2022-2023</div>
                     <div class="requirement-detail">GPA: 3.841</div>
                 </div>
-                
+
                 <table class="requirement-courses">
                     <tr>
                         <th width="5%"></th>
@@ -546,7 +542,9 @@
                         </td>
                         <td>120 credits are required (excludes In-Progress)</td>
                         <td>
-                            <strong>Still needed:</strong> You currently have 90 credits completed towards your degree. This does not include courses you are currently registered for. You still need a minimum of 30 credits.
+                            <strong>Still needed:</strong> You currently have 90 credits completed towards your degree.
+                            This does not include courses you are currently registered for. You still need a minimum of
+                            30 credits.
                         </td>
                     </tr>
                     <tr>
@@ -633,8 +631,7 @@
                 </table>
             </div>
         </div>
-        
-        <!-- Upper-Division Hours Section -->
+
         <div class="requirement-section" id="upperdiv">
             <div class="requirement-header">
                 <h2 class="requirement-title">
@@ -650,12 +647,12 @@
                     <div class="requirement-detail">Credits required: 42</div>
                     <div class="requirement-detail">Credits applied: 32</div>
                 </div>
-                
+
                 <div style="margin-bottom: 15px;">
                     <strong>Unmet conditions for this set of requirements:</strong>
                     <p>You have 32 upper-division credits completed and/or In Progress; 10 credits are still needed.</p>
                 </div>
-                
+
                 <table class="requirement-courses">
                     <tr>
                         <th width="5%"></th>
@@ -689,20 +686,17 @@
                         <td>Fall 2024</td>
                         <td></td>
                     </tr>
-                    <!-- More course rows would go here -->
                 </table>
-                
+
                 <div style="margin-top: 15px;">
                     <strong>Still needed:</strong>
-                    <p>A minimum of 42 upper-division credits are required. You have 32 upper-division credits completed and/or In Progress.</p>
+                    <p>A minimum of 42 upper-division credits are required. You have 32 upper-division credits completed
+                        and/or In Progress.</p>
                 </div>
             </div>
         </div>
-        
-        <!-- Placeholder for other requirement sections like Kent Core, Foreign Language, Major Requirements -->
-        <!-- Each would follow the same structure as the Upper-Division Hours section -->
-        
-        <!-- In-progress Section -->
+
+
         <div class="requirement-section">
             <div class="requirement-header">
                 <h2 class="requirement-title">In-progress</h2>
@@ -712,7 +706,7 @@
                     <div class="requirement-detail">Credits applied: 13</div>
                     <div class="requirement-detail">Classes applied: 4</div>
                 </div>
-                
+
                 <table class="requirement-courses">
                     <tr>
                         <th width="15%">Course</th>
@@ -757,15 +751,15 @@
                 </table>
             </div>
         </div>
-        
-        <!-- Footer with Warning Text -->
+
         <div class="warning-text">
-            <strong>Please Note:</strong> This graduation tracking system is for planning purposes only. Please double check the courses to ensure they match with your curriculum. Always consult with your academic advisor for official degree requirements.
+            <strong>Please Note:</strong> This graduation tracking system is for planning purposes only. Please double
+            check the courses to ensure they match with your curriculum. Always consult with your academic advisor for
+            official degree requirements.
         </div>
     </div>
 
     <script>
-        // JavaScript to handle expanding/collapsing sections
         document.querySelectorAll('.requirement-header').forEach(header => {
             header.addEventListener('click', () => {
                 const content = header.nextElementSibling;
@@ -774,4 +768,5 @@
         });
     </script>
 </body>
+
 </html>

@@ -47,11 +47,9 @@
         .msg_card_body {
             overflow-y: auto;
             height: calc(100vh - 140px);
-            /* Adjust for header and footer */
             scrollbar-width: thin;
             scrollbar-color: #888 #f1f1f1;
             padding-bottom: 8px !important;
-            /* Added to ensure messages don't get cut off at the bottom */
         }
 
         .msg_card_body::-webkit-scrollbar {
@@ -272,7 +270,6 @@
             clear: both;
         }
 
-        /* Responsive adjustments */
         @media (max-width: 768px) {
             .col-md-8 {
                 flex: 0 0 100%;
@@ -317,7 +314,6 @@
                         </div>
                     </div>
                     <div id="messageFormeight" class="card-body msg_card_body">
-                        <!-- Welcome message will be added dynamically -->
                     </div>
                     <div class="card-footer">
                         <form id="messageArea" class="input-group">
@@ -338,7 +334,6 @@
 
     <script>
         $(document).ready(function () {
-            // Academic response database
             const academicResponses = {
                 greetings: [
                     "Hello! How can I assist you with your academic questions today?",
@@ -419,31 +414,25 @@
                 ]
             };
 
-            // Function to generate responses based on keywords
             function generateResponse(query) {
                 query = query.toLowerCase().trim();
 
-                // Handle empty messages
                 if (query === "") {
                     return "I didn't catch that. Could you please repeat your question?";
                 }
 
-                // Check for greetings first
                 if (query.match(/^(hi|hello|hey|greetings|howdy|hola)/i)) {
                     return getRandomResponse(academicResponses.greetings);
                 }
 
-                // Check for thank you messages
                 if (query.match(/(thank|thanks|thx|ty)/i)) {
                     return getRandomResponse(academicResponses.thanks);
                 }
 
-                // Add direct handling for single word "majors" query
                 if (query === "majors") {
                     return getRandomResponse(academicResponses.majors);
                 }
 
-                // Check for specific courses
                 const queryNoSpaces = query.replace(/\s+/g, "").toLowerCase();
 
                 if (queryNoSpaces.includes("cs35101") || query.toLowerCase().includes("computer organization")) {
@@ -462,7 +451,6 @@
                     return academicResponses.specific_courses.bsci10002;
                 }
 
-                // Check for specific majors
                 else if (query === "computer science" || query.includes("computer science major") ||
                     (query.includes("computer science") && query.includes("degree"))) {
                     return academicResponses.specific_majors.computerScience;
@@ -476,7 +464,6 @@
                     return academicResponses.specific_majors.psychology;
                 }
 
-                // Check for calendar information
                 else if (query.includes("fall registration")) {
                     return academicResponses.calendar.fall_registration;
                 }
@@ -498,7 +485,6 @@
                         "Which calendar information would you like more details about?";
                 }
 
-                // Check for academic policies
                 else if (query.includes("academic standing") || query.includes("good standing") || query.includes("probation") || query.includes("dismissal")) {
                     return academicResponses.policies.academic_standing;
                 }
@@ -516,13 +502,11 @@
                         "Which policy would you like more information about?";
                 }
 
-                // Check for enrollment information
                 else if (query.includes("enrollment requirements") || query.includes("enrollment") || query.includes("course load") ||
                     query.includes("credit hours") || query.includes("full time") || query.includes("part time")) {
                     return academicResponses.enrollment.requirements;
                 }
 
-                // Check for financial information
                 else if (query.includes("tuition") || query.includes("cost per credit")) {
                     return academicResponses.financial.tuition;
                 }
@@ -568,7 +552,6 @@
                         "Which resource would you like more information about?";
                 }
 
-                // General keyword handling
                 else if (containsAny(query, ["course", "class", "semester", "curriculum", "prerequisite"])) {
                     return getRandomResponse(academicResponses.greetings);
                 }
@@ -588,22 +571,18 @@
                     return getRandomResponse(academicResponses.campus || academicResponses.default);
                 }
 
-                // If nothing specific is found, use fallback responses
                 return getRandomResponse(academicResponses.default);
             }
 
-            // Helper function to check if query contains any of the keywords
             function containsAny(text, keywords) {
                 return keywords.some(keyword => text.includes(keyword));
             }
 
-            // Function to get a random response from a category
             function getRandomResponse(responseArray) {
                 const randomIndex = Math.floor(Math.random() * responseArray.length);
                 return responseArray[randomIndex];
             }
 
-            // Function to get current time formatted as HH:MM
             function getCurrentTime() {
                 const date = new Date();
                 const hours = date.getHours().toString().padStart(2, '0');
@@ -611,7 +590,6 @@
                 return hours + ":" + minutes;
             }
 
-            // Function to safely encode HTML entities
             function escapeHtml(text) {
                 if (!text) return '';
                 const div = document.createElement('div');
@@ -619,81 +597,66 @@
                 return div.innerHTML;
             }
 
-            // Function to format message text with line breaks for readability
             function formatMessageText(text) {
                 if (!text) return '';
                 return text.replace(/\n/g, '<br>');
             }
 
-            // Display welcome message
             function showWelcomeMessage() {
                 const welcomeHtml = '<div class="chat-message d-flex justify-content-start mb-4"><div class="img_cont_msg"><img src="https://mascothalloffame.com/wp-content/uploads/bb-plugin/cache/kentstate-e1678839414693-circle.png" class="rounded-circle user_img_msg" alt="AI Assistant"></div><div class="msg_cotainer">Welcome to the AI Academic Advisor! I can help with questions about courses, majors, registration, deadlines, financial aid, and campus resources. How can I assist you today?<span class="msg_time">Now</span></div></div>';
                 $("#messageFormeight").append(welcomeHtml);
             }
 
-            // Show welcome message on page load
             showWelcomeMessage();
 
-            // Function to show typing indicator
             function showTypingIndicator() {
                 const typingHtml = '<div id="typing-indicator" class="chat-message d-flex justify-content-start mb-4"><div class="img_cont_msg"><img src="https://mascothalloffame.com/wp-content/uploads/bb-plugin/cache/kentstate-e1678839414693-circle.png" class="rounded-circle user_img_msg" alt="AI Assistant"></div><div class="msg_cotainer">Thinking<div class="typing-indicator"><span></span><span></span><span></span></div></div></div>';
                 $("#messageFormeight").append(typingHtml);
                 $("#messageFormeight").scrollTop($("#messageFormeight")[0].scrollHeight);
             }
 
-            // Function to remove typing indicator
             function removeTypingIndicator() {
                 $("#typing-indicator").remove();
             }
 
-            // Function to handle message sending
             function sendMessage(message) {
-                if (!message.trim()) return; // Don't send empty messages
+                if (!message.trim()) return;
 
                 const str_time = getCurrentTime();
 
-                // Create and display user message
                 const safeText = escapeHtml(message);
                 const userHtml = '<div class="chat-message d-flex justify-content-end mb-4"><div class="msg_cotainer_send">' + safeText + '<span class="msg_time_send">' + str_time +
                     '</span></div><div class="img_cont_msg"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Antu_amarok_artist.svg/1920px-Antu_amarok_artist.svg.png" class="rounded-circle user_img_msg" alt="User"></div></div>';
 
-                $("#text").val(""); // Clear input field
+                $("#text").val("");
                 $("#messageFormeight").append(userHtml);
                 $("#messageFormeight").scrollTop($("#messageFormeight")[0].scrollHeight);
 
-                // Show typing indicator
                 showTypingIndicator();
 
-                // Simulate processing delay for more realistic feel
                 setTimeout(function () {
-                    // Remove typing indicator
                     removeTypingIndicator();
 
-                    // Generate response
                     const response = generateResponse(message);
 
-                    // Format and display AI response
                     const safeResponse = escapeHtml(response);
                     const formattedResponse = formatMessageText(safeResponse);
                     const botHtml = '<div class="chat-message d-flex justify-content-start mb-4"><div class="img_cont_msg"><img src="https://mascothalloffame.com/wp-content/uploads/bb-plugin/cache/kentstate-e1678839414693-circle.png" class="rounded-circle user_img_msg" alt="AI Assistant"></div><div class="msg_cotainer">' + formattedResponse + '<span class="msg_time">' + getCurrentTime() + '</span></div></div>';
 
                     $("#messageFormeight").append(botHtml);
 
-                    // Ensure proper scrolling to show the new message
                     setTimeout(function () {
                         $("#messageFormeight").scrollTop($("#messageFormeight")[0].scrollHeight);
-                    }, 100); // Short delay to ensure DOM is updated
-                }, Math.random() * 1000 + 500); // Random delay between 0.5-1.5 seconds for more realism
+                    }, 100);
+                }, Math.random() * 1000 + 500);
             }
 
-            // Handle form submission
             $("#messageArea").on("submit", function (event) {
                 event.preventDefault();
                 const msg = $("#text").val();
                 sendMessage(msg);
             });
 
-            // Add event listener for Enter key
             $("#text").keypress(function (e) {
                 if (e.which == 13 && !e.shiftKey) {
                     $("#messageArea").submit();

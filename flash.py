@@ -3,10 +3,8 @@ import random
 import re
 import os
 
-# Create Flask app
 app = Flask(__name__, template_folder=".")
 
-# Basic academic Q&A responses
 academic_responses = {
     "greetings": [
         "Hello! How can I assist you with your academic questions today?",
@@ -97,26 +95,20 @@ def generate_academic_response(query):
     """Generate a response based on academic query keywords"""
     query = query.lower().strip()
     
-    # Handle empty messages
     if not query:
         return "I didn't catch that. Could you please repeat your question?"
     
-    # Check for greetings first
     if re.match(r'^(hi|hello|hey|greetings|howdy|hola)', query):
         return random.choice(academic_responses["greetings"])
     
-    # Check for thank you messages
     if re.search(r'(thank|thanks|thx|ty)', query):
         return random.choice(academic_responses["thanks"])
     
-    # Check for specific course inquiries
     query_no_spaces = query.replace(" ", "").lower()
 
-    # Add direct handling for single word "majors" query
     if query == "majors":
         return random.choice(academic_responses["majors"])
     
-    # Specific courses
     if "cs35101" in query_no_spaces or "computer organization" in query:
         return academic_responses["specific_courses"]["cs35101"]
     elif "cs23022" in query_no_spaces or "discrete structures" in query:
@@ -128,7 +120,6 @@ def generate_academic_response(query):
     elif "bsci10002" in query_no_spaces or "life on planet earth" in query:
         return academic_responses["specific_courses"]["bsci10002"]
     
-    # Specific majors
     elif query == "computer science" or "computer science major" in query or ("computer science" in query and "degree" in query):
      return academic_responses["specific_majors"]["computerScience"]
     elif query == "business administration" or query == "business" or "business administration" in query or ("business" in query and "major" in query):
@@ -136,7 +127,6 @@ def generate_academic_response(query):
     elif query == "psychology" or "psychology major" in query or ("psychology" in query and "degree" in query):
      return academic_responses["specific_majors"]["psychology"]
     
-    # Calendar information
     elif "fall registration" in query:
         return academic_responses["calendar"]["fall_registration"]
     elif "spring registration" in query:
@@ -153,7 +143,6 @@ def generate_academic_response(query):
                 "- Semester Dates\n\n"
                 "Which calendar information would you like more details about?")
     
-    # Academic policies
     elif "academic standing" in query or "good standing" in query or "probation" in query or "dismissal" in query:
         return academic_responses["policies"]["academic_standing"]
     elif "grading" in query or "grade scale" in query or "gpa scale" in query:
@@ -167,11 +156,9 @@ def generate_academic_response(query):
                 "- Academic Honors\n\n"
                 "Which policy would you like more information about?")
     
-    # Enrollment information
     elif "enrollment requirements" in query or "enrollment" in query or "course load" in query or "credit hours" in query or "full time" in query or "part time" in query:
         return academic_responses["enrollment"]["requirements"]
     
-    # Financial information
     elif "tuition" in query or "cost per credit" in query:
         return academic_responses["financial"]["tuition"]
     elif "payment" in query or "pay tuition" in query or "e-bill" in query:
@@ -188,7 +175,6 @@ def generate_academic_response(query):
                 "- Scholarships\n\n"
                 "Which financial information would you like more details about?")
     
-    # Resources
     elif "academic success" in query or "tutoring" in query:
         return academic_responses["resources"]["academic_success"]
     elif "writing" in query or "writing center" in query:
@@ -208,7 +194,6 @@ def generate_academic_response(query):
                 "- Disability Services\n\n"
                 "Which resource would you like more information about?")
     
-    # Default responses for general categories
     elif any(word in query for word in ["course", "class", "semester", "curriculum", "prerequisite"]):
         return random.choice(academic_responses["courses"])
     elif any(word in query for word in ["major", "minor", "degree", "program", "concentration"]):
@@ -224,23 +209,19 @@ def generate_academic_response(query):
     else:
         return random.choice(academic_responses["default"])
 
-# Route to serve index.html
 @app.route("/")
 def index():
     print("Index route accessed")
     return render_template('index.html')
 
-# Route to serve the flash.html file
 @app.route("/flash.html")
 def flash_html():
     return render_template('flash.html')
 
-# Route to serve the help.html file
 @app.route("/help.html")
 def help_html():
     return render_template('help.html')
 
-# Keep these for backward compatibility with older code
 @app.route("/flash")
 def flash_page():
     return render_template('flash.html')
@@ -249,7 +230,6 @@ def flash_page():
 def help_page():
     return render_template('help.html')
 
-# API endpoint for chat functionality
 @app.route("/get", methods=["GET", "POST"])
 def chat():
     print(f"Chat endpoint accessed with method: {request.method}")
@@ -259,7 +239,6 @@ def chat():
             msg = request.form.get("msg", "")
             print(f"Message received: {msg}")
             
-            # Generate a meaningful response
             response = generate_academic_response(msg)
             print(f"Response generated: {response}")
             
@@ -270,7 +249,6 @@ def chat():
         print(f"Error in chat endpoint: {e}")
         return f"Sorry, I encountered an error processing your request. Please try again."
 
-# Add static file serving for GitHub Pages compatibility
 @app.route("/<path:path>")
 def serve_static(path):
     return send_from_directory('.', path)
