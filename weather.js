@@ -22,7 +22,6 @@ function displayWeather(current, forecast) {
     const weatherBox = document.getElementById('weather-display');
     const temp = Math.round(current.main.temp);
 
-    // Process forecast data
     const dailyForecasts = {};
     forecast.list.forEach(item => {
         const date = new Date(item.dt * 1000);
