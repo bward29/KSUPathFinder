@@ -1,28 +1,44 @@
-document.querySelectorAll('.requirement-header').forEach(header => {
-    header.addEventListener('click', () => {
-        const content = header.nextElementSibling;
-        content.style.display = content.style.display === 'none' ? 'block' : 'none';
+document.addEventListener('DOMContentLoaded', function() {
+    
+    initializeRequirementToggles();
+    initializeChartModal();
+    initializeTabSwitching();
+    initializeCourseSelectionModal();
+    initializeCourseLists();
+
+    
+    updateWhatIfProgress();
+});
+
+function initializeRequirementToggles() {
+    document.querySelectorAll('.requirement-header').forEach(header => {
+        header.addEventListener('click', () => {
+            const content = header.nextElementSibling;
+            content.style.display = content.style.display === 'none' ? 'block' : 'none';
+        });
     });
-});
+}
 
-const chartBtn = document.getElementById('chartBtn');
-const chartModal = document.getElementById('chartModal');
-const closeChartModal = document.getElementById('closeChartModal');
+function initializeChartModal() {
+    const chartBtn = document.getElementById('chartBtn');
+    const chartModal = document.getElementById('chartModal');
+    const closeChartModal = document.getElementById('closeChartModal');
 
-chartBtn.addEventListener('click', function() {
-    chartModal.style.display = 'block';
-    createPieChart();
-});
+    chartBtn.addEventListener('click', function() {
+        chartModal.style.display = 'block';
+        createPieChart();
+    });
 
-closeChartModal.addEventListener('click', function() {
-    chartModal.style.display = 'none';
-});
-
-window.addEventListener('click', function(event) {
-    if (event.target === chartModal) {
+    closeChartModal.addEventListener('click', function() {
         chartModal.style.display = 'none';
-    }
-});
+    });
+
+    window.addEventListener('click', function(event) {
+        if (event.target === chartModal) {
+            chartModal.style.display = 'none';
+        }
+    });
+}
 
 function createPieChart() {
     const pieChartContainer = document.getElementById('pieChartContainer');
@@ -129,10 +145,13 @@ function createPieChart() {
     chartContainer.appendChild(legend);
     
     pieChartContainer.appendChild(chartContainer);
+}
 
-    let currentCredits = 90; 
+
+let currentCredits = 90; 
 const totalCreditsRequired = 120;
 const startingCredits = currentCredits;
+let currentSemester = '';
 
 const semesterCourses = {
     Spring2025: [
@@ -146,33 +165,35 @@ const semesterCourses = {
     Spring2026: []
 };
 
-const academicTab = document.querySelector('.tab:nth-child(1)');
-const whatIfTab = document.querySelector('.tab:nth-child(2)');
-const academicContent = document.getElementById('academic-content');
-const whatIfContent = document.getElementById('what-if-content');
+function initializeTabSwitching() {
+    const academicTab = document.querySelector('.tab:nth-child(1)');
+    const whatIfTab = document.querySelector('.tab:nth-child(2)');
+    const academicContent = document.getElementById('academic-content');
+    const whatIfContent = document.getElementById('what-if-content');
 
-function updateTabDisplay() {
-    if (academicTab.classList.contains('active')) {
-        academicContent.style.display = 'block';
-        whatIfContent.style.display = 'none';
-    } else {
-        academicContent.style.display = 'none';
-        whatIfContent.style.display = 'block';
-        updateWhatIfProgress();
+    academicTab.addEventListener('click', function() {
+        academicTab.classList.add('active');
+        whatIfTab.classList.remove('active');
+        updateTabDisplay();
+    });
+
+    whatIfTab.addEventListener('click', function() {
+        whatIfTab.classList.add('active');
+        academicTab.classList.remove('active');
+        updateTabDisplay();
+    });
+
+    function updateTabDisplay() {
+        if (academicTab.classList.contains('active')) {
+            academicContent.style.display = 'block';
+            whatIfContent.style.display = 'none';
+        } else {
+            academicContent.style.display = 'none';
+            whatIfContent.style.display = 'block';
+            updateWhatIfProgress();
+        }
     }
 }
-
-academicTab.addEventListener('click', function() {
-    academicTab.classList.add('active');
-    whatIfTab.classList.remove('active');
-    updateTabDisplay();
-});
-
-whatIfTab.addEventListener('click', function() {
-    whatIfTab.classList.add('active');
-    academicTab.classList.remove('active');
-    updateTabDisplay();
-});
 
 function updateWhatIfProgress() {
     let totalCredits = startingCredits;
@@ -199,15 +220,121 @@ function updateWhatIfProgress() {
         completionMessage.style.display = 'none';
     }
 }
-const courseSelectionModal = document.getElementById('courseSelectionModal');
-const closeCourseModal = document.getElementById('closeCourseModal');
-const courseSearch = document.getElementById('courseSearch');
-const courseOptions = document.querySelectorAll('.course-option');
-const addSelectedCourseBtn = document.getElementById('addSelectedCourseBtn');
-const manualCourseCode = document.getElementById('manualCourseCode');
-const manualCourseCredits = document.getElementById('manualCourseCredits');
 
-let currentSemester = '';
+function initializeCourseSelectionModal() {
+    const courseSelectionModal = document.getElementById('courseSelectionModal');
+    const closeCourseModal = document.getElementById('closeCourseModal');
+    const courseSearch = document.getElementById('courseSearch');
+    const courseOptions = document.querySelectorAll('.course-option');
+    const addSelectedCourseBtn = document.getElementById('addSelectedCourseBtn');
+    const manualCourseCode = document.getElementById('manualCourseCode');
+    const manualCourseCredits = document.getElementById('manualCourseCredits');
+
+    document.querySelectorAll('.add-course-btn').forEach(button => {
+        button.addEventListener('click', function() {
+            currentSemester = this.dataset.semester;
+            courseSelectionModal.style.display = 'block';
+            resetCourseSelection();
+            updateAvailableCourses(); 
+        });
+    });
+
+    closeCourseModal.addEventListener('click', function() {
+        courseSelectionModal.style.display = 'none';
+    });
+
+    window.addEventListener('click', function(event) {
+        if (event.target === courseSelectionModal) {
+            courseSelectionModal.style.display = 'none';
+        }
+    });
+
+    courseSearch.addEventListener('input', function() {
+        const searchTerm = this.value.toLowerCase();
+        let resultsFound = false;
+        
+        courseOptions.forEach(option => {
+            const code = option.dataset.code.toLowerCase();
+            const name = option.querySelector('.course-option-name').textContent.toLowerCase();
+            
+            if (code.includes(searchTerm) || name.includes(searchTerm)) {
+                option.style.display = 'flex';
+                resultsFound = true;
+            } else {
+                option.style.display = 'none';
+            }
+        });
+        
+        document.querySelector('.no-results').style.display = resultsFound ? 'none' : 'block';
+    });
+
+    courseOptions.forEach(option => {
+        option.addEventListener('click', function() {
+            if (!this.classList.contains('disabled')) {
+                courseOptions.forEach(opt => opt.classList.remove('selected'));
+                this.classList.add('selected');
+                
+                manualCourseCode.value = '';
+                manualCourseCredits.value = '';
+            }
+        });
+    });
+
+    addSelectedCourseBtn.addEventListener('click', function() {
+        let courseCode, courseCredits;
+        
+        const selectedOption = document.querySelector('.course-option.selected');
+        
+        if (selectedOption) {
+            courseCode = selectedOption.dataset.code;
+            courseCredits = parseInt(selectedOption.dataset.credits);
+        } 
+        
+        else if (manualCourseCode.value && manualCourseCredits.value) {
+            courseCode = manualCourseCode.value.toUpperCase();
+            courseCredits = parseInt(manualCourseCredits.value);
+            
+            let courseAlreadySelected = false;
+            for (const semester in semesterCourses) {
+                semesterCourses[semester].forEach(course => {
+                    if (course.code === courseCode) {
+                        courseAlreadySelected = true;
+                    }
+                });
+            }
+            
+            if (courseAlreadySelected) {
+                alert('This course is already selected in another semester.');
+                return;
+            }
+        } 
+        
+        else {
+            alert('Please select a course or enter course details manually.');
+            return;
+        }
+        
+        semesterCourses[currentSemester].push({
+            code: courseCode,
+            credits: courseCredits
+        });
+        
+        updateCourseList(currentSemester);
+        updateWhatIfProgress();
+        courseSelectionModal.style.display = 'none';
+    });
+
+    function resetCourseSelection() {
+        courseSearch.value = '';
+        manualCourseCode.value = '';
+        manualCourseCredits.value = '';
+        courseOptions.forEach(option => {
+            option.classList.remove('selected');
+            option.style.display = 'flex';
+        });
+        document.querySelector('.no-results').style.display = 'none';
+    }
+}
 
 function updateAvailableCourses() {
     const selectedCourses = [];
@@ -229,114 +356,20 @@ function updateAvailableCourses() {
     });
 }
 
-document.querySelectorAll('.add-course-btn').forEach(button => {
-    button.addEventListener('click', function() {
-        currentSemester = this.dataset.semester;
-        courseSelectionModal.style.display = 'block';
-        resetCourseSelection();
-        updateAvailableCourses(); 
-    });
-});
-
-closeCourseModal.addEventListener('click', function() {
-    courseSelectionModal.style.display = 'none';
-});
-
-window.addEventListener('click', function(event) {
-    if (event.target === courseSelectionModal) {
-        courseSelectionModal.style.display = 'none';
+function initializeCourseLists() {
+    for (const semester in semesterCourses) {
+        updateCourseList(semester);
     }
-});
 
-function resetCourseSelection() {
-    courseSearch.value = '';
-    manualCourseCode.value = '';
-    manualCourseCredits.value = '';
-    courseOptions.forEach(option => {
-        option.classList.remove('selected');
-        option.style.display = 'flex';
+    document.getElementById('saveWhatIfBtn').addEventListener('click', function() {
+        alert('Your What-If plan has been saved!');
     });
-    document.querySelector('.no-results').style.display = 'none';
 }
 
-courseSearch.addEventListener('input', function() {
-    const searchTerm = this.value.toLowerCase();
-    let resultsFound = false;
-    
-    courseOptions.forEach(option => {
-        const code = option.dataset.code.toLowerCase();
-        const name = option.querySelector('.course-option-name').textContent.toLowerCase();
-        
-        if (code.includes(searchTerm) || name.includes(searchTerm)) {
-            option.style.display = 'flex';
-            resultsFound = true;
-        } else {
-            option.style.display = 'none';
-        }
-    });
-    
-    document.querySelector('.no-results').style.display = resultsFound ? 'none' : 'block';
-});
-
-courseOptions.forEach(option => {
-    option.addEventListener('click', function() {
-        if (!this.classList.contains('disabled')) {
-            courseOptions.forEach(opt => opt.classList.remove('selected'));
-            this.classList.add('selected');
-            
-            manualCourseCode.value = '';
-            manualCourseCredits.value = '';
-        }
-    });
-});
-
-addSelectedCourseBtn.addEventListener('click', function() {
-    let courseCode, courseCredits;
-    
-    const selectedOption = document.querySelector('.course-option.selected');
-    
-    if (selectedOption) {
-        courseCode = selectedOption.dataset.code;
-        courseCredits = parseInt(selectedOption.dataset.credits);
-    } 
-    
-    else if (manualCourseCode.value && manualCourseCredits.value) {
-        courseCode = manualCourseCode.value.toUpperCase();
-        courseCredits = parseInt(manualCourseCredits.value);
-        
-        let courseAlreadySelected = false;
-        for (const semester in semesterCourses) {
-            semesterCourses[semester].forEach(course => {
-                if (course.code === courseCode) {
-                    courseAlreadySelected = true;
-                }
-            });
-        }
-        
-        if (courseAlreadySelected) {
-            alert('This course is already selected in another semester.');
-            return;
-        }
-    } 
-    
-    else {
-        alert('Please select a course or enter course details manually.');
-        return;
-    }
-    
-    semesterCourses[currentSemester].push({
-        code: courseCode,
-        credits: courseCredits
-    });
-    
-    updateCourseList(currentSemester);
-    
-    updateWhatIfProgress();
-    
-    courseSelectionModal.style.display = 'none';
-});
 function updateCourseList(semester) {
     const courseListElement = document.getElementById(`${semester}-courses`);
+    if (!courseListElement) return;
+    
     courseListElement.innerHTML = '';
     
     semesterCourses[semester].forEach((course, index) => {
@@ -364,30 +397,14 @@ function updateCourseList(semester) {
         courseListElement.appendChild(courseItem);
     });
     
-    document.querySelectorAll('.remove-course-btn').forEach(button => {
-        if (button.dataset.semester && button.dataset.index !== undefined) {
-            button.addEventListener('click', function() {
-                const semester = this.dataset.semester;
-                const index = parseInt(this.dataset.index);
-                
-                semesterCourses[semester].splice(index, 1);
-                
-                updateCourseList(semester);
-                updateWhatIfProgress();
-                updateAvailableCourses();
-            });
-        }
+    document.querySelectorAll(`.remove-course-btn[data-semester="${semester}"]`).forEach(button => {
+        button.addEventListener('click', function() {
+            const index = parseInt(this.dataset.index);
+            semesterCourses[semester].splice(index, 1);
+            
+            updateCourseList(semester);
+            updateWhatIfProgress();
+            updateAvailableCourses();
+        });
     });
-}
-
-for (const semester in semesterCourses) {
-    updateCourseList(semester);
-}
-
-document.getElementById('saveWhatIfBtn').addEventListener('click', function() {
-    alert('Your What-If plan has been saved!');
-});
-
-updateWhatIfProgress();
-
 }

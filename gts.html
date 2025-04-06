@@ -1,714 +1,698 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KSU PathFinder - Graduation Tracking System</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="gts-style.css">
-</head>
-<body>
-    <div class="container">
-        <div class="page-header">
-            <h1>Graduation Tracking System</h1>
-            <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Home</a>
-        </div>
-    </div>
-    
-
-    <div class="student-info-card">
-        <div class="student-info-header">
-            <div class="info-field">
-                <label>Student ID</label>
-                <div class="value">8111111111</div>
-            </div>
-            <div class="info-field">
-                <label>Name</label>
-                <div class="value">Morales, Miles</div>
-            </div>
-            <div class="info-field">
-                <label>Degree</label>
-                <div class="value">Bachelor of Science</div>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>KSU PathFinder - Graduation Tracking System</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+        <link rel="stylesheet" href="styles.css" />
+        <link rel="stylesheet" href="gts-style.css" />
+    </head>
+    <body>
+        <div class="container">
+            <div class="page-header">
+                <h1>Graduation Tracking System</h1>
+                <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Home</a>
             </div>
         </div>
 
-        <div class="student-info-details">
-            <div class="info-field">
-                <label>Level</label>
-                <div class="value">Undergraduate</div>
+        <div class="student-info-card">
+            <div class="student-info-header">
+                <div class="info-field">
+                    <label>Student ID</label>
+                    <div class="value">8111111111</div>
+                </div>
+                <div class="info-field">
+                    <label>Name</label>
+                    <div class="value">Morales, Miles</div>
+                </div>
+                <div class="info-field">
+                    <label>Degree</label>
+                    <div class="value">Bachelor of Science</div>
+                </div>
             </div>
-            <div class="info-field">
-                <label>Class Level</label>
-                <div class="value">Junior</div>
+
+            <div class="student-info-details">
+                <div class="info-field">
+                    <label>Level</label>
+                    <div class="value">Undergraduate</div>
+                </div>
+                <div class="info-field">
+                    <label>Class Level</label>
+                    <div class="value">Junior</div>
+                </div>
+                <div class="info-field">
+                    <label>Major</label>
+                    <div class="value">Computer Science</div>
+                </div>
+                <div class="info-field">
+                    <label>College</label>
+                    <div class="value">Coll of Arts and Sciences</div>
+                </div>
+                <div class="info-field">
+                    <label>Earned Hours</label>
+                    <div class="value">90</div>
+                </div>
+                <div class="info-field">
+                    <label>Overall GPA</label>
+                    <div class="value">3.841</div>
+                </div>
+                <div class="info-field">
+                    <label>Academic Standing</label>
+                    <div class="value">Good Standing</div>
+                </div>
+                <div class="info-field">
+                    <label>Term Honors</label>
+                    <div class="value">Dean's List</div>
+                </div>
+                <div class="info-field">
+                    <label>Professional Advisor</label>
+                    <div class="value">Gwen Stacy</div>
+                </div>
+                <div class="info-field">
+                    <label>Campus</label>
+                    <div class="value">Stark Campus</div>
+                </div>
             </div>
-            <div class="info-field">
-                <label>Major</label>
-                <div class="value">Computer Science</div>
-            </div>
-            <div class="info-field">
-                <label>College</label>
-                <div class="value">Coll of Arts and Sciences</div>
-            </div>
-            <div class="info-field">
-                <label>Earned Hours</label>
-                <div class="value">90</div>
-            </div>
-            <div class="info-field">
-                <label>Overall GPA</label>
-                <div class="value">3.841</div>
-            </div>
-            <div class="info-field">
-                <label>Academic Standing</label>
-                <div class="value">Good Standing</div>
-            </div>
-            <div class="info-field">
-                <label>Term Honors</label>
-                <div class="value">Dean's List</div>
-            </div>
-            <div class="info-field">
-                <label>Professional Advisor</label>
-                <div class="value">Gwen Stacy</div>
-            </div>
-            <div class="info-field">
-                <label>Campus</label>
-                <div class="value">Stark Campus</div>
+            <div class="info-field" style="margin-top: 15px;">
+                <label>Graduation Application Submitted for</label>
+                <div class="value">Spring 2026</div>
             </div>
         </div>
-        <div class="info-field" style="margin-top: 15px;">
-            <label>Graduation Application Submitted for</label>
-            <div class="value">Spring 2026</div>
-        </div>
-    </div>
-    <div class="tab-container">
-        <div class="tabs">
-            <div class="tab active">Academic</div>
-            <div class="tab">What-If</div>
-        </div>
-    </div>
-    
-    <div class="tab-content" id="academic-content">
-        <div class="progress-card">
-            <div class="progress-overview">
-                <div class="progress-item">
-                    <div class="progress-value">90/120</div>
-                    <div class="progress-label">Credits Completed</div>
-                </div>
-                <div class="progress-item">
-                    <div class="progress-value">75%</div>
-                    <div class="progress-label">Degree Completion</div>
-                </div>
-                <div class="progress-item">
-                    <div class="progress-value">3.841</div>
-                    <div class="progress-label">Overall GPA</div>
-                </div>
-                <div class="progress-item">
-                    <div class="progress-value">Spring 2026</div>
-                    <div class="progress-label">Expected Graduation</div>
-                </div>
-            </div>
-            <div class="progress-bar-container">
-                <div class="progress-bar" style="width: 75%;"></div>
-            </div>
-            <div style="text-align: right;">
-                <button class="btn btn-primary" id="chartBtn">Chart</button>
-            </div>
-        </div>
-        <div class="requirement-section">
-            <div class="requirement-header">
-                <h2 class="requirement-title">
-                    <span class="status-indicator status-incomplete">
-                        <i class="fas fa-times"></i>
-                    </span>
-                    Bachelor of Science Degree
-                </h2>
-                <span class="status-tag tag-incomplete">INCOMPLETE</span>
-            </div>
-            <div class="requirement-content">
-                <div class="requirement-info">
-                    <div class="requirement-detail">Catalog year: 2022-2023</div>
-                    <div class="requirement-detail">GPA: 3.841</div>
-                </div>
-        
-                <table class="requirement-courses">
-                    <tr>
-                        <th width="5%"></th>
-                        <th width="60%">Requirement</th>
-                        <th width="35%">Status</th>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span class="status-indicator status-incomplete">
-                                <i class="fas fa-times"></i>
-                            </span>
-                        </td>
-                        <td>120 credits are required (excludes In-Progress)</td>
-                        <td>
-                            <strong>Still needed:</strong> You currently have 90 credits completed towards your degree.
-                            This does not include courses you are currently registered for. You still need a minimum of
-                            30 credits.
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span class="status-indicator status-complete">
-                                <i class="fas fa-check"></i>
-                            </span>
-                        </td>
-                        <td>An Overall GPA of 2.000 is required</td>
-                        <td>Completed</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span class="status-indicator status-complete">
-                                <i class="fas fa-check"></i>
-                            </span>
-                        </td>
-                        <td>A minimum of 30 credits must be taken in residence (excludes In-Progress)</td>
-                        <td>Completed</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span class="status-indicator status-inprogress">
-                                <i class="fas fa-clock"></i>
-                            </span>
-                        </td>
-                        <td>University Requirements</td>
-                        <td>In Progress</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span class="status-indicator status-incomplete">
-                                <i class="fas fa-times"></i>
-                            </span>
-                        </td>
-                        <td>Upper-Division Requirement</td>
-                        <td>See <a href="#upperdiv">Upper-Division Hours</a> section</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span class="status-indicator status-complete">
-                                <i class="fas fa-check"></i>
-                            </span>
-                        </td>
-                        <td>Non-Course Requirements</td>
-                        <td>Completed</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span class="status-indicator status-complete">
-                                <i class="fas fa-check"></i>
-                            </span>
-                        </td>
-                        <td>Kent Core Requirements</td>
-                        <td>Completed</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span class="status-indicator status-incomplete">
-                                <i class="fas fa-times"></i>
-                            </span>
-                        </td>
-                        <td>Foreign Language Requirement</td>
-                        <td>See <a href="#foreignlang">Foreign Language Requirements</a> section</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span class="status-indicator status-incomplete">
-                                <i class="fas fa-times"></i>
-                            </span>
-                        </td>
-                        <td>Major Requirements</td>
-                        <td>See <a href="#major">Major in Computer Science BS</a> section</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span class="status-indicator status-complete">
-                                <i class="fas fa-check"></i>
-                            </span>
-                        </td>
-                        <td>OTM completed at KSU</td>
-                        <td>Completed</td>
-                    </tr>
-                </table>
+        <div class="tab-container">
+            <div class="tabs">
+                <div class="tab active">Academic</div>
+                <div class="tab">What-If</div>
             </div>
         </div>
 
-        <div class="requirement-section" id="upperdiv">
-            <div class="requirement-header">
-                <h2 class="requirement-title">
-                    <span class="status-indicator status-incomplete">
-                        <i class="fas fa-times"></i>
-                    </span>
-                    Upper-Division Hours
-                </h2>
-                <span class="status-tag tag-incomplete">INCOMPLETE</span>
-            </div>
-            <div class="requirement-content">
-                <div class="requirement-info">
-                    <div class="requirement-detail">Credits required: 42</div>
-                    <div class="requirement-detail">Credits applied: 32</div>
-                </div>
-        
-                <div style="margin-bottom: 15px;">
-                    <strong>Unmet conditions for this set of requirements:</strong>
-                    <p>You have 32 upper-division credits completed and/or In Progress; 10 credits are still needed.</p>
-                </div>
-        
-                <table class="requirement-courses">
-                    <tr>
-                        <th width="5%"></th>
-                        <th width="15%">Course</th>
-                        <th width="30%">Title</th>
-                        <th width="10%">Grade</th>
-                        <th width="10%">Credits</th>
-                        <th width="15%">Term</th>
-                        <th width="15%">Repeated</th>
-                    </tr>
-                    
-                    <tr>
-                        <td>
-                            <span class="status-indicator status-incomplete">
-                                <i class="fas fa-times"></i>
-                            </span>
-                        </td>
-                        <td>CS 32301</td>
-                        <td>HUMAN INTERFACE COMPUTING</td>
-                        <td>REG</td>
-                        <td>(3)</td>
-                        <td>Spring 2025</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>CS 33007</td>
-                        <td>INTRO TO DATABASE SYS DESIGN</td>
-                        <td>A</td>
-                        <td>3</td>
-                        <td>Fall 2024</td>
-                        <td></td>
-                    </tr>
-                </table>
-        
-                <div style="margin-top: 15px;">
-                    <strong>Still needed:</strong>
-                    <p>A minimum of 42 upper-division credits are required. You have 32 upper-division credits completed
-                        and/or In Progress.</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="requirement-section">
-            <div class="requirement-header">
-                <h2 class="requirement-title">In-progress</h2>
-            </div>
-            <div class="requirement-content">
-                <div class="requirement-info">
-                    <div class="requirement-detail">Credits applied: 13</div>
-                    <div class="requirement-detail">Classes applied: 4</div>
-                </div>
-        
-                <table class="requirement-courses">
-                    <tr>
-                        <th width="15%">Course</th>
-                        <th width="40%">Title</th>
-                        <th width="10%">Grade</th>
-                        <th width="10%">Credits</th>
-                        <th width="15%">Term</th>
-                        <th width="10%">Repeated</th>
-                    </tr>
-                    <tr>
-                        <td>CS 35201</td>
-                        <td>COMPUTER COMMUNICATION NETWORKS</td>
-                        <td>REG</td>
-                        <td>(3)</td>
-                        <td>Spring 2025</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>CS 33901</td>
-                        <td>SOFTWARE ENGINEERING</td>
-                        <td>REG</td>
-                        <td>(3)</td>
-                        <td>Spring 2025</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>CS 44001</td>
-                        <td>COMPUTER SCIENCE III-PROGRAMMING PATTERNS</td>
-                        <td>REG</td>
-                        <td>(3)</td>
-                        <td>Spring 2025</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>CS 46101</td>
-                        <td>DESIGN AND ANALYSIS OF ALGORITHMS</td>
-                        <td>REG</td>
-                        <td>(4)</td>
-                        <td>Spring 2025</td>
-                        <td></td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-        
-        <div class="warning-text">
-            <strong>Please Note:</strong> This graduation tracking system is for planning purposes only. Please double
-            check the courses to ensure they match with your curriculum. Always consult with your academic advisor for
-            official degree requirements.
-        </div>
-
-    </div>
-    
-    <div class="tab-content" id="what-if-content" style="display: none;">
-        <div class="progress-card">
-            <div class="progress-overview">
-                <div class="progress-item">
-                    <div class="progress-value" id="what-if-credits">90/120</div>
-                    <div class="progress-label">What-If Credits</div>
-                </div>
-                <div class="progress-item">
-                    <div class="progress-value" id="what-if-percentage">75%</div>
-                    <div class="progress-label">Degree Completion</div>
-                </div>
-                <div class="progress-item">
-                    <div class="progress-value">3.841</div>
-                    <div class="progress-label">Overall GPA</div>
-                </div>
-                <div class="progress-item">
-                    <div class="progress-value">Spring 2026</div>
-                    <div class="progress-label">Expected Graduation</div>
-                </div>
-            </div>
-            <div class="progress-bar-container">
-                <div class="progress-bar" id="what-if-progress-bar" style="width: 75%;"></div>
-            </div>
-            <div id="completion-message" style="display: none; margin-bottom: 15px; padding: 15px; background-color: #d4edda; color: #155724; border-radius: 4px; text-align: center;">
-                <p style="font-weight: 600; margin-bottom: 10px;">Congratulations! This schedule meets credit requirements for graduation.</p>
-                <p>Please <a href="https://www.kent.edu/stark/drop-ins" target="_blank" style="color: #155724; text-decoration: underline; font-weight: 600;">schedule an advising appointment</a> to review your plan.</p>
-            </div>
-            <div style="text-align: right;">
-                <button class="btn btn-primary" id="saveWhatIfBtn">Save Plan</button>
-            </div>
-        </div>
-
-        <div class="semester-planner">
-            <div class="semester-container">
-                <div class="semester-header">
-                    <h3>Spring '25 (Current)</h3>
-                    <button class="add-course-btn" data-semester="Spring2025">+</button>
-                </div>
-                <div class="course-list" id="Spring2025-courses">
-                    <div class="course-item">
-                        <span class="course-code">CS 35201</span>
-                        <span class="course-credits">(3)</span>
-                        <button class="remove-course-btn" data-courseid="CS35201">×</button>
+        <div class="tab-content" id="academic-content">
+            <div class="progress-card">
+                <div class="progress-overview">
+                    <div class="progress-item">
+                        <div class="progress-value">90/120</div>
+                        <div class="progress-label">Credits Completed</div>
                     </div>
-                    <div class="course-item">
-                        <span class="course-code">CS 33901</span>
-                        <span class="course-credits">(3)</span>
-                        <button class="remove-course-btn" data-courseid="CS33901">×</button>
+                    <div class="progress-item">
+                        <div class="progress-value">75%</div>
+                        <div class="progress-label">Degree Completion</div>
                     </div>
-                    <div class="course-item">
-                        <span class="course-code">CS 44001</span>
-                        <span class="course-credits">(3)</span>
-                        <button class="remove-course-btn" data-courseid="CS44001">×</button>
+                    <div class="progress-item">
+                        <div class="progress-value">3.841</div>
+                        <div class="progress-label">Overall GPA</div>
                     </div>
-                    <div class="course-item">
-                        <span class="course-code">CS 46101</span>
-                        <span class="course-credits">(4)</span>
-                        <button class="remove-course-btn" data-courseid="CS46101">×</button>
+                    <div class="progress-item">
+                        <div class="progress-value">Spring 2026</div>
+                        <div class="progress-label">Expected Graduation</div>
+                    </div>
+                </div>
+                <div class="progress-bar-container">
+                    <div class="progress-bar" style="width: 75%;"></div>
+                </div>
+                <div style="text-align: right;">
+                    <button class="btn btn-primary" id="chartBtn">Chart</button>
+                </div>
+            </div>
+            <div class="requirement-section">
+                <div class="requirement-header">
+                    <h2 class="requirement-title">
+                        <span class="status-indicator status-incomplete">
+                            <i class="fas fa-times"></i>
+                        </span>
+                        Bachelor of Science Degree
+                    </h2>
+                    <span class="status-tag tag-incomplete">INCOMPLETE</span>
+                </div>
+                <div class="requirement-content">
+                    <div class="requirement-info">
+                        <div class="requirement-detail">Catalog year: 2022-2023</div>
+                        <div class="requirement-detail">GPA: 3.841</div>
+                    </div>
+
+                    <table class="requirement-courses">
+                        <tr>
+                            <th width="5%"></th>
+                            <th width="60%">Requirement</th>
+                            <th width="35%">Status</th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="status-indicator status-incomplete">
+                                    <i class="fas fa-times"></i>
+                                </span>
+                            </td>
+                            <td>120 credits are required (excludes In-Progress)</td>
+                            <td><strong>Still needed:</strong> You currently have 90 credits completed towards your degree. This does not include courses you are currently registered for. You still need a minimum of 30 credits.</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="status-indicator status-complete">
+                                    <i class="fas fa-check"></i>
+                                </span>
+                            </td>
+                            <td>An Overall GPA of 2.000 is required</td>
+                            <td>Completed</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="status-indicator status-complete">
+                                    <i class="fas fa-check"></i>
+                                </span>
+                            </td>
+                            <td>A minimum of 30 credits must be taken in residence (excludes In-Progress)</td>
+                            <td>Completed</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="status-indicator status-inprogress">
+                                    <i class="fas fa-clock"></i>
+                                </span>
+                            </td>
+                            <td>University Requirements</td>
+                            <td>In Progress</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="status-indicator status-incomplete">
+                                    <i class="fas fa-times"></i>
+                                </span>
+                            </td>
+                            <td>Upper-Division Requirement</td>
+                            <td>See <a href="#upperdiv">Upper-Division Hours</a> section</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="status-indicator status-complete">
+                                    <i class="fas fa-check"></i>
+                                </span>
+                            </td>
+                            <td>Non-Course Requirements</td>
+                            <td>Completed</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="status-indicator status-complete">
+                                    <i class="fas fa-check"></i>
+                                </span>
+                            </td>
+                            <td>Kent Core Requirements</td>
+                            <td>Completed</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="status-indicator status-incomplete">
+                                    <i class="fas fa-times"></i>
+                                </span>
+                            </td>
+                            <td>Foreign Language Requirement</td>
+                            <td>See <a href="#foreignlang">Foreign Language Requirements</a> section</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="status-indicator status-incomplete">
+                                    <i class="fas fa-times"></i>
+                                </span>
+                            </td>
+                            <td>Major Requirements</td>
+                            <td>See <a href="#major">Major in Computer Science BS</a> section</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="status-indicator status-complete">
+                                    <i class="fas fa-check"></i>
+                                </span>
+                            </td>
+                            <td>OTM completed at KSU</td>
+                            <td>Completed</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="requirement-section" id="upperdiv">
+                <div class="requirement-header">
+                    <h2 class="requirement-title">
+                        <span class="status-indicator status-incomplete">
+                            <i class="fas fa-times"></i>
+                        </span>
+                        Upper-Division Hours
+                    </h2>
+                    <span class="status-tag tag-incomplete">INCOMPLETE</span>
+                </div>
+                <div class="requirement-content">
+                    <div class="requirement-info">
+                        <div class="requirement-detail">Credits required: 42</div>
+                        <div class="requirement-detail">Credits applied: 32</div>
+                    </div>
+
+                    <div style="margin-bottom: 15px;">
+                        <strong>Unmet conditions for this set of requirements:</strong>
+                        <p>You have 32 upper-division credits completed and/or In Progress; 10 credits are still needed.</p>
+                    </div>
+
+                    <table class="requirement-courses">
+                        <tr>
+                            <th width="5%"></th>
+                            <th width="15%">Course</th>
+                            <th width="30%">Title</th>
+                            <th width="10%">Grade</th>
+                            <th width="10%">Credits</th>
+                            <th width="15%">Term</th>
+                            <th width="15%">Repeated</th>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <span class="status-indicator status-incomplete">
+                                    <i class="fas fa-times"></i>
+                                </span>
+                            </td>
+                            <td>CS 32301</td>
+                            <td>HUMAN INTERFACE COMPUTING</td>
+                            <td>REG</td>
+                            <td>(3)</td>
+                            <td>Spring 2025</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>CS 33007</td>
+                            <td>INTRO TO DATABASE SYS DESIGN</td>
+                            <td>A</td>
+                            <td>3</td>
+                            <td>Fall 2024</td>
+                            <td></td>
+                        </tr>
+                    </table>
+
+                    <div style="margin-top: 15px;">
+                        <strong>Still needed:</strong>
+                        <p>A minimum of 42 upper-division credits are required. You have 32 upper-division credits completed and/or In Progress.</p>
                     </div>
                 </div>
             </div>
-        
-            <div class="semester-container">
-                <div class="semester-header">
-                    <h3>Summer '25</h3>
-                    <button class="add-course-btn" data-semester="Summer2025">+</button>
+
+            <div class="requirement-section">
+                <div class="requirement-header">
+                    <h2 class="requirement-title">In-progress</h2>
                 </div>
-                <div class="course-list" id="Summer2025-courses">
-                    
+                <div class="requirement-content">
+                    <div class="requirement-info">
+                        <div class="requirement-detail">Credits applied: 13</div>
+                        <div class="requirement-detail">Classes applied: 4</div>
+                    </div>
+
+                    <table class="requirement-courses">
+                        <tr>
+                            <th width="15%">Course</th>
+                            <th width="40%">Title</th>
+                            <th width="10%">Grade</th>
+                            <th width="10%">Credits</th>
+                            <th width="15%">Term</th>
+                            <th width="10%">Repeated</th>
+                        </tr>
+                        <tr>
+                            <td>CS 35201</td>
+                            <td>COMPUTER COMMUNICATION NETWORKS</td>
+                            <td>REG</td>
+                            <td>(3)</td>
+                            <td>Spring 2025</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>CS 33901</td>
+                            <td>SOFTWARE ENGINEERING</td>
+                            <td>REG</td>
+                            <td>(3)</td>
+                            <td>Spring 2025</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>CS 44001</td>
+                            <td>COMPUTER SCIENCE III-PROGRAMMING PATTERNS</td>
+                            <td>REG</td>
+                            <td>(3)</td>
+                            <td>Spring 2025</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>CS 46101</td>
+                            <td>DESIGN AND ANALYSIS OF ALGORITHMS</td>
+                            <td>REG</td>
+                            <td>(4)</td>
+                            <td>Spring 2025</td>
+                            <td></td>
+                        </tr>
+                    </table>
                 </div>
             </div>
-        
-            <div class="semester-container">
-                <div class="semester-header">
-                    <h3>Fall '25</h3>
-                    <button class="add-course-btn" data-semester="Fall2025">+</button>
+
+            <div class="warning-text">
+                <strong>Please Note:</strong> This graduation tracking system is for planning purposes only. Please double check the courses to ensure they match with your curriculum. Always consult with your academic advisor for official
+                degree requirements.
+            </div>
+        </div>
+
+        <div class="tab-content" id="what-if-content" style="display: none;">
+            <div class="progress-card">
+                <div class="progress-overview">
+                    <div class="progress-item">
+                        <div class="progress-value" id="what-if-credits">90/120</div>
+                        <div class="progress-label">What-If Credits</div>
+                    </div>
+                    <div class="progress-item">
+                        <div class="progress-value" id="what-if-percentage">75%</div>
+                        <div class="progress-label">Degree Completion</div>
+                    </div>
+                    <div class="progress-item">
+                        <div class="progress-value">3.841</div>
+                        <div class="progress-label">Overall GPA</div>
+                    </div>
+                    <div class="progress-item">
+                        <div class="progress-value">Spring 2026</div>
+                        <div class="progress-label">Expected Graduation</div>
+                    </div>
                 </div>
-                <div class="course-list" id="Fall2025-courses">
-                    
+                <div class="progress-bar-container">
+                    <div class="progress-bar" id="what-if-progress-bar" style="width: 75%;"></div>
+                </div>
+                <div id="completion-message" style="display: none; margin-bottom: 15px; padding: 15px; background-color: #d4edda; color: #155724; border-radius: 4px; text-align: center;">
+                    <p style="font-weight: 600; margin-bottom: 10px;">Congratulations! This schedule meets credit requirements for graduation.</p>
+                    <p>Please <a href="https://www.kent.edu/stark/drop-ins" target="_blank" style="color: #155724; text-decoration: underline; font-weight: 600;">schedule an advising appointment</a> to review your plan.</p>
+                </div>
+                <div style="text-align: right;">
+                    <button class="btn btn-primary" id="saveWhatIfBtn">Save Plan</button>
                 </div>
             </div>
-        
-            <div class="semester-container">
-                <div class="semester-header">
-                    <h3>Spring '26</h3>
-                    <button class="add-course-btn" data-semester="Spring2026">+</button>
+
+            <div class="semester-planner">
+                <div class="semester-container">
+                    <div class="semester-header">
+                        <h3>Spring '25 (Current)</h3>
+                        <button class="add-course-btn" data-semester="Spring2025">+</button>
+                    </div>
+                    <div class="course-list" id="Spring2025-courses">
+                        <div class="course-item">
+                            <span class="course-code">CS 35201</span>
+                            <span class="course-credits">(3)</span>
+                            <button class="remove-course-btn" data-courseid="CS35201">×</button>
+                        </div>
+                        <div class="course-item">
+                            <span class="course-code">CS 33901</span>
+                            <span class="course-credits">(3)</span>
+                            <button class="remove-course-btn" data-courseid="CS33901">×</button>
+                        </div>
+                        <div class="course-item">
+                            <span class="course-code">CS 44001</span>
+                            <span class="course-credits">(3)</span>
+                            <button class="remove-course-btn" data-courseid="CS44001">×</button>
+                        </div>
+                        <div class="course-item">
+                            <span class="course-code">CS 46101</span>
+                            <span class="course-credits">(4)</span>
+                            <button class="remove-course-btn" data-courseid="CS46101">×</button>
+                        </div>
+                    </div>
                 </div>
-                <div class="course-list" id="Spring2026-courses">
-                    
+
+                <div class="semester-container">
+                    <div class="semester-header">
+                        <h3>Summer '25</h3>
+                        <button class="add-course-btn" data-semester="Summer2025">+</button>
+                    </div>
+                    <div class="course-list" id="Summer2025-courses"></div>
+                </div>
+
+                <div class="semester-container">
+                    <div class="semester-header">
+                        <h3>Fall '25</h3>
+                        <button class="add-course-btn" data-semester="Fall2025">+</button>
+                    </div>
+                    <div class="course-list" id="Fall2025-courses"></div>
+                </div>
+
+                <div class="semester-container">
+                    <div class="semester-header">
+                        <h3>Spring '26</h3>
+                        <button class="add-course-btn" data-semester="Spring2026">+</button>
+                    </div>
+                    <div class="course-list" id="Spring2026-courses"></div>
                 </div>
             </div>
         </div>
 
-
-    </div>
-
-    <div id="chartModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>Degree Completion Chart</h2>
-                <span class="close-modal" id="closeChartModal">&times;</span>
-            </div>
-            <div class="modal-body">
-                <div id="pieChartContainer"></div>
+        <div id="chartModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Degree Completion Chart</h2>
+                    <span class="close-modal" id="closeChartModal">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <div id="pieChartContainer"></div>
+                </div>
             </div>
         </div>
-    </div>
-    
-    <div id="courseSelectionModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>Add Course</h2>
-                <span class="close-modal" id="closeCourseModal">&times;</span>
-            </div>
-            <div class="modal-body">
-                <div class="form-group">
-                    <label for="courseSearch">Search for course:</label>
-                    <input type="text" id="courseSearch" placeholder="e.g., CS 30062">
+
+        <div id="courseSelectionModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Add Course</h2>
+                    <span class="close-modal" id="closeCourseModal">&times;</span>
                 </div>
-                
-                <div class="course-options">
-                    <div class="course-option" data-code="CS 30062" data-credits="3">
-                        <div class="course-option-details">
-                            <span class="course-option-code">CS 30062</span>
-                            <span class="course-option-name">PYTHON FOR DATA SCIENCE</span>
-                        </div>
-                        <span class="course-option-credits">3 credits</span>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="courseSearch">Search for course:</label>
+                        <input type="text" id="courseSearch" placeholder="e.g., CS 30062" />
                     </div>
-                    
-                    <div class="course-option" data-code="CS 31045" data-credits="3">
-                        <div class="course-option-details">
-                            <span class="course-option-code">CS 31045</span>
-                            <span class="course-option-name">FORMAL LOGIC</span>
+
+                    <div class="course-options">
+                        <div class="course-option" data-code="CS 30062" data-credits="3">
+                            <div class="course-option-details">
+                                <span class="course-option-code">CS 30062</span>
+                                <span class="course-option-name">PYTHON FOR DATA SCIENCE</span>
+                            </div>
+                            <span class="course-option-credits">3 credits</span>
                         </div>
-                        <span class="course-option-credits">3 credits</span>
+
+                        <div class="course-option" data-code="CS 31045" data-credits="3">
+                            <div class="course-option-details">
+                                <span class="course-option-code">CS 31045</span>
+                                <span class="course-option-name">FORMAL LOGIC</span>
+                            </div>
+                            <span class="course-option-credits">3 credits</span>
+                        </div>
+
+                        <div class="course-option" data-code="CS 33006" data-credits="3">
+                            <div class="course-option-details">
+                                <span class="course-option-code">CS 33006</span>
+                                <span class="course-option-name">SOCIAL AND ETHICAL ISSUES</span>
+                            </div>
+                            <span class="course-option-credits">3 credits</span>
+                        </div>
+
+                        <div class="course-option" data-code="CS 33092" data-credits="2">
+                            <div class="course-option-details">
+                                <span class="course-option-code">CS 33092</span>
+                                <span class="course-option-name">SPEED PROGRAMMING PRACTICUM</span>
+                            </div>
+                            <span class="course-option-credits">2 credits</span>
+                        </div>
+
+                        <div class="course-option" data-code="CS 33301" data-credits="3">
+                            <div class="course-option-details">
+                                <span class="course-option-code">CS 33301</span>
+                                <span class="course-option-name">EMBEDDED SYSTEM PROGRAMMING</span>
+                            </div>
+                            <span class="course-option-credits">3 credits</span>
+                        </div>
+
+                        <div class="course-option" data-code="CS 33302" data-credits="3">
+                            <div class="course-option-details">
+                                <span class="course-option-code">CS 33302</span>
+                                <span class="course-option-name">INTRO TO INTELLIGENT ROBOTICS</span>
+                            </div>
+                            <span class="course-option-credits">3 credits</span>
+                        </div>
+
+                        <div class="course-option" data-code="CS 38101" data-credits="3">
+                            <div class="course-option-details">
+                                <span class="course-option-code">CS 38101</span>
+                                <span class="course-option-name">INTRO TO GAME PROGRAMMING</span>
+                            </div>
+                            <span class="course-option-credits">3 credits</span>
+                        </div>
+
+                        <div class="course-option" data-code="CS 40510" data-credits="3">
+                            <div class="course-option-details">
+                                <span class="course-option-code">CS 40510</span>
+                                <span class="course-option-name">INTRO TO NATURAL LANG PROCESS</span>
+                            </div>
+                            <span class="course-option-credits">3 credits</span>
+                        </div>
+
+                        <div class="course-option" data-code="CS 41038" data-credits="3">
+                            <div class="course-option-details">
+                                <span class="course-option-code">CS 41038</span>
+                                <span class="course-option-name">INTERMEDIATE LOGIC</span>
+                            </div>
+                            <span class="course-option-credits">3 credits</span>
+                        </div>
+
+                        <div class="course-option" data-code="CS 42201" data-credits="3">
+                            <div class="course-option-details">
+                                <span class="course-option-code">CS 42201</span>
+                                <span class="course-option-name">NUMERICAL LINEAR ALGEBRA</span>
+                            </div>
+                            <span class="course-option-credits">3 credits</span>
+                        </div>
+
+                        <div class="course-option" data-code="CS 42202" data-credits="3">
+                            <div class="course-option-details">
+                                <span class="course-option-code">CS 42202</span>
+                                <span class="course-option-name">NUMERICAL APPROX/OPTIMIZATION</span>
+                            </div>
+                            <span class="course-option-credits">3 credits</span>
+                        </div>
+
+                        <div class="course-option" data-code="CS 43016" data-credits="3">
+                            <div class="course-option-details">
+                                <span class="course-option-code">CS 43016</span>
+                                <span class="course-option-name">BIG DATA ANALYTICS</span>
+                            </div>
+                            <span class="course-option-credits">3 credits</span>
+                        </div>
+
+                        <div class="course-option" data-code="CS 43105" data-credits="3">
+                            <div class="course-option-details">
+                                <span class="course-option-code">CS 43105</span>
+                                <span class="course-option-name">DATA MINING TECHNIQUES</span>
+                            </div>
+                            <span class="course-option-credits">3 credits</span>
+                        </div>
+
+                        <div class="course-option" data-code="CS 43111" data-credits="3">
+                            <div class="course-option-details">
+                                <span class="course-option-code">CS 43111</span>
+                                <span class="course-option-name">STRUCTURE OF COMPILERS</span>
+                            </div>
+                            <span class="course-option-credits">3 credits</span>
+                        </div>
+
+                        <div class="course-option" data-code="CS 43118" data-credits="3">
+                            <div class="course-option-details">
+                                <span class="course-option-code">CS 43118</span>
+                                <span class="course-option-name">GRAPH SOCIAL NETWK ANALYSIS</span>
+                            </div>
+                            <span class="course-option-credits">3 credits</span>
+                        </div>
+
+                        <div class="course-option" data-code="CS 43301" data-credits="3">
+                            <div class="course-option-details">
+                                <span class="course-option-code">CS 43301</span>
+                                <span class="course-option-name">SOFTWARE DEV FOR ROBOTICS</span>
+                            </div>
+                            <span class="course-option-credits">3 credits</span>
+                        </div>
+
+                        <div class="course-option" data-code="CS 43303" data-credits="3">
+                            <div class="course-option-details">
+                                <span class="course-option-code">CS 43303</span>
+                                <span class="course-option-name">INTERNET OF THINGS</span>
+                            </div>
+                            <span class="course-option-credits">3 credits</span>
+                        </div>
+
+                        <div class="course-option" data-code="CS 43334" data-credits="3">
+                            <div class="course-option-details">
+                                <span class="course-option-code">CS 43334</span>
+                                <span class="course-option-name">HUMAN-ROBOT INTERACTION</span>
+                            </div>
+                            <span class="course-option-credits">3 credits</span>
+                        </div>
+
+                        <div class="course-option" data-code="CS 44003" data-credits="3">
+                            <div class="course-option-details">
+                                <span class="course-option-code">CS 44003</span>
+                                <span class="course-option-name">MOBILE APPS IN IOS PROGRAMMING</span>
+                            </div>
+                            <span class="course-option-credits">3 credits</span>
+                        </div>
+
+                        <div class="course-option" data-code="CS 44201" data-credits="3">
+                            <div class="course-option-details">
+                                <span class="course-option-code">CS 44201</span>
+                                <span class="course-option-name">ARTIFICIAL INTELLIGENCE</span>
+                            </div>
+                            <span class="course-option-credits">3 credits</span>
+                        </div>
+
+                        <div class="course-option" data-code="CS 44202" data-credits="3">
+                            <div class="course-option-details">
+                                <span class="course-option-code">CS 44202</span>
+                                <span class="course-option-name">MACHINE AND DEEP LEARNING</span>
+                            </div>
+                            <span class="course-option-credits">3 credits</span>
+                        </div>
+
+                        <div class="course-option" data-code="CS 45203" data-credits="3">
+                            <div class="course-option-details">
+                                <span class="course-option-code">CS 45203</span>
+                                <span class="course-option-name">COMPUTER NETWORK SECURITY</span>
+                            </div>
+                            <span class="course-option-credits">3 credits</span>
+                        </div>
+
+                        <div class="course-option" data-code="CS 45231" data-credits="3">
+                            <div class="course-option-details">
+                                <span class="course-option-code">CS 45231</span>
+                                <span class="course-option-name">INTERNET ENGINEERING</span>
+                            </div>
+                            <span class="course-option-credits">3 credits</span>
+                        </div>
+
+                        <div class="course-option" data-code="CS 47102" data-credits="3">
+                            <div class="course-option-details">
+                                <span class="course-option-code">CS 47102</span>
+                                <span class="course-option-name">COMPUTER HAPTICS</span>
+                            </div>
+                            <span class="course-option-credits">3 credits</span>
+                        </div>
+
+                        <div class="course-option" data-code="CS 47205" data-credits="3">
+                            <div class="course-option-details">
+                                <span class="course-option-code">CS 47205</span>
+                                <span class="course-option-name">INFORMATION SECURITY</span>
+                            </div>
+                            <span class="course-option-credits">3 credits</span>
+                        </div>
+
+                        <div class="course-option" data-code="CS 47207" data-credits="3">
+                            <div class="course-option-details">
+                                <span class="course-option-code">CS 47207</span>
+                                <span class="course-option-name">DIGITAL FORENSICS</span>
+                            </div>
+                            <span class="course-option-credits">3 credits</span>
+                        </div>
                     </div>
-                    
-                    <div class="course-option" data-code="CS 33006" data-credits="3">
-                        <div class="course-option-details">
-                            <span class="course-option-code">CS 33006</span>
-                            <span class="course-option-name">SOCIAL AND ETHICAL ISSUES</span>
-                        </div>
-                        <span class="course-option-credits">3 credits</span>
+
+                    <div class="no-results" style="display: none;">
+                        <p>No courses found. Try a different search term.</p>
                     </div>
-                    
-                    <div class="course-option" data-code="CS 33092" data-credits="2">
-                        <div class="course-option-details">
-                            <span class="course-option-code">CS 33092</span>
-                            <span class="course-option-name">SPEED PROGRAMMING PRACTICUM</span>
+
+                    <div class="form-group" style="margin-top: 20px;">
+                        <label for="manualCourseCode">Or enter course manually:</label>
+                        <div style="display: flex; gap: 10px; margin-top: 5px;">
+                            <input type="text" id="manualCourseCode" placeholder="Course code" style="flex: 2;" />
+                            <input type="number" id="manualCourseCredits" placeholder="Credits" min="1" max="6" style="flex: 1;" />
                         </div>
-                        <span class="course-option-credits">2 credits</span>
                     </div>
-                    
-                    <div class="course-option" data-code="CS 33301" data-credits="3">
-                        <div class="course-option-details">
-                            <span class="course-option-code">CS 33301</span>
-                            <span class="course-option-name">EMBEDDED SYSTEM PROGRAMMING</span>
-                        </div>
-                        <span class="course-option-credits">3 credits</span>
-                    </div>
-                    
-                    <div class="course-option" data-code="CS 33302" data-credits="3">
-                        <div class="course-option-details">
-                            <span class="course-option-code">CS 33302</span>
-                            <span class="course-option-name">INTRO TO INTELLIGENT ROBOTICS</span>
-                        </div>
-                        <span class="course-option-credits">3 credits</span>
-                    </div>
-                    
-                    <div class="course-option" data-code="CS 38101" data-credits="3">
-                        <div class="course-option-details">
-                            <span class="course-option-code">CS 38101</span>
-                            <span class="course-option-name">INTRO TO GAME PROGRAMMING</span>
-                        </div>
-                        <span class="course-option-credits">3 credits</span>
-                    </div>
-                    
-                    <div class="course-option" data-code="CS 40510" data-credits="3">
-                        <div class="course-option-details">
-                            <span class="course-option-code">CS 40510</span>
-                            <span class="course-option-name">INTRO TO NATURAL LANG PROCESS</span>
-                        </div>
-                        <span class="course-option-credits">3 credits</span>
-                    </div>
-                    
-                    <div class="course-option" data-code="CS 41038" data-credits="3">
-                        <div class="course-option-details">
-                            <span class="course-option-code">CS 41038</span>
-                            <span class="course-option-name">INTERMEDIATE LOGIC</span>
-                        </div>
-                        <span class="course-option-credits">3 credits</span>
-                    </div>
-                    
-                    <div class="course-option" data-code="CS 42201" data-credits="3">
-                        <div class="course-option-details">
-                            <span class="course-option-code">CS 42201</span>
-                            <span class="course-option-name">NUMERICAL LINEAR ALGEBRA</span>
-                        </div>
-                        <span class="course-option-credits">3 credits</span>
-                    </div>
-                    
-                    <div class="course-option" data-code="CS 42202" data-credits="3">
-                        <div class="course-option-details">
-                            <span class="course-option-code">CS 42202</span>
-                            <span class="course-option-name">NUMERICAL APPROX/OPTIMIZATION</span>
-                        </div>
-                        <span class="course-option-credits">3 credits</span>
-                    </div>
-                    
-                    <div class="course-option" data-code="CS 43016" data-credits="3">
-                        <div class="course-option-details">
-                            <span class="course-option-code">CS 43016</span>
-                            <span class="course-option-name">BIG DATA ANALYTICS</span>
-                        </div>
-                        <span class="course-option-credits">3 credits</span>
-                    </div>
-                    
-                    <div class="course-option" data-code="CS 43105" data-credits="3">
-                        <div class="course-option-details">
-                            <span class="course-option-code">CS 43105</span>
-                            <span class="course-option-name">DATA MINING TECHNIQUES</span>
-                        </div>
-                        <span class="course-option-credits">3 credits</span>
-                    </div>
-                    
-                    <div class="course-option" data-code="CS 43111" data-credits="3">
-                        <div class="course-option-details">
-                            <span class="course-option-code">CS 43111</span>
-                            <span class="course-option-name">STRUCTURE OF COMPILERS</span>
-                        </div>
-                        <span class="course-option-credits">3 credits</span>
-                    </div>
-                    
-                    <div class="course-option" data-code="CS 43118" data-credits="3">
-                        <div class="course-option-details">
-                            <span class="course-option-code">CS 43118</span>
-                            <span class="course-option-name">GRAPH SOCIAL NETWK ANALYSIS</span>
-                        </div>
-                        <span class="course-option-credits">3 credits</span>
-                    </div>
-                    
-                    <div class="course-option" data-code="CS 43301" data-credits="3">
-                        <div class="course-option-details">
-                            <span class="course-option-code">CS 43301</span>
-                            <span class="course-option-name">SOFTWARE DEV FOR ROBOTICS</span>
-                        </div>
-                        <span class="course-option-credits">3 credits</span>
-                    </div>
-                    
-                    <div class="course-option" data-code="CS 43303" data-credits="3">
-                        <div class="course-option-details">
-                            <span class="course-option-code">CS 43303</span>
-                            <span class="course-option-name">INTERNET OF THINGS</span>
-                        </div>
-                        <span class="course-option-credits">3 credits</span>
-                    </div>
-                    
-                    <div class="course-option" data-code="CS 43334" data-credits="3">
-                        <div class="course-option-details">
-                            <span class="course-option-code">CS 43334</span>
-                            <span class="course-option-name">HUMAN-ROBOT INTERACTION</span>
-                        </div>
-                        <span class="course-option-credits">3 credits</span>
-                    </div>
-                    
-                    <div class="course-option" data-code="CS 44003" data-credits="3">
-                        <div class="course-option-details">
-                            <span class="course-option-code">CS 44003</span>
-                            <span class="course-option-name">MOBILE APPS IN IOS PROGRAMMING</span>
-                        </div>
-                        <span class="course-option-credits">3 credits</span>
-                    </div>
-                    
-                    <div class="course-option" data-code="CS 44201" data-credits="3">
-                        <div class="course-option-details">
-                            <span class="course-option-code">CS 44201</span>
-                            <span class="course-option-name">ARTIFICIAL INTELLIGENCE</span>
-                        </div>
-                        <span class="course-option-credits">3 credits</span>
-                    </div>
-                    
-                    <div class="course-option" data-code="CS 44202" data-credits="3">
-                        <div class="course-option-details">
-                            <span class="course-option-code">CS 44202</span>
-                            <span class="course-option-name">MACHINE AND DEEP LEARNING</span>
-                        </div>
-                        <span class="course-option-credits">3 credits</span>
-                    </div>
-                    
-                    <div class="course-option" data-code="CS 45203" data-credits="3">
-                        <div class="course-option-details">
-                            <span class="course-option-code">CS 45203</span>
-                            <span class="course-option-name">COMPUTER NETWORK SECURITY</span>
-                        </div>
-                        <span class="course-option-credits">3 credits</span>
-                    </div>
-                    
-                    <div class="course-option" data-code="CS 45231" data-credits="3">
-                        <div class="course-option-details">
-                            <span class="course-option-code">CS 45231</span>
-                            <span class="course-option-name">INTERNET ENGINEERING</span>
-                        </div>
-                        <span class="course-option-credits">3 credits</span>
-                    </div>
-                    
-                    <div class="course-option" data-code="CS 47102" data-credits="3">
-                        <div class="course-option-details">
-                            <span class="course-option-code">CS 47102</span>
-                            <span class="course-option-name">COMPUTER HAPTICS</span>
-                        </div>
-                        <span class="course-option-credits">3 credits</span>
-                    </div>
-                    
-                    <div class="course-option" data-code="CS 47205" data-credits="3">
-                        <div class="course-option-details">
-                            <span class="course-option-code">CS 47205</span>
-                            <span class="course-option-name">INFORMATION SECURITY</span>
-                        </div>
-                        <span class="course-option-credits">3 credits</span>
-                    </div>
-                    
-                    <div class="course-option" data-code="CS 47207" data-credits="3">
-                        <div class="course-option-details">
-                            <span class="course-option-code">CS 47207</span>
-                            <span class="course-option-name">DIGITAL FORENSICS</span>
-                        </div>
-                        <span class="course-option-credits">3 credits</span>
+
+                    <div class="action-buttons" style="margin-top: 20px;">
+                        <button class="btn btn-primary" id="addSelectedCourseBtn">Add Course</button>
                     </div>
                 </div>
-                
-                <div class="no-results" style="display: none;">
-                    <p>No courses found. Try a different search term.</p>
-                </div>
-                
-                <div class="form-group" style="margin-top: 20px;">
-                    <label for="manualCourseCode">Or enter course manually:</label>
-                    <div style="display: flex; gap: 10px; margin-top: 5px;">
-                        <input type="text" id="manualCourseCode" placeholder="Course code" style="flex: 2;">
-                        <input type="number" id="manualCourseCredits" placeholder="Credits" min="1" max="6" style="flex: 1;">
-                    </div>
-                </div>
-                
-                <div class="action-buttons" style="margin-top: 20px;">
-                    <button class="btn btn-primary" id="addSelectedCourseBtn">Add Course</button>
             </div>
         </div>
-    </div>
-</div>
-<script src="script.js"></script>
-</body>
+        <script src="script.js"></script>
+    </body>
 </html>
