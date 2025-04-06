@@ -361,7 +361,36 @@
     </div>
     
     <div class="tab-content" id="what-if-content" style="display: none;">
-        <!-- What-if content will go here -->
+        <div class="progress-card">
+            <div class="progress-overview">
+                <div class="progress-item">
+                    <div class="progress-value" id="what-if-credits">90/120</div>
+                    <div class="progress-label">What-If Credits</div>
+                </div>
+                <div class="progress-item">
+                    <div class="progress-value" id="what-if-percentage">75%</div>
+                    <div class="progress-label">Degree Completion</div>
+                </div>
+                <div class="progress-item">
+                    <div class="progress-value">3.841</div>
+                    <div class="progress-label">Overall GPA</div>
+                </div>
+                <div class="progress-item">
+                    <div class="progress-value">Spring 2026</div>
+                    <div class="progress-label">Expected Graduation</div>
+                </div>
+            </div>
+            <div class="progress-bar-container">
+                <div class="progress-bar" id="what-if-progress-bar" style="width: 75%;"></div>
+            </div>
+            <div id="completion-message" style="display: none; margin-bottom: 15px; padding: 15px; background-color: #d4edda; color: #155724; border-radius: 4px; text-align: center;">
+                <p style="font-weight: 600; margin-bottom: 10px;">Congratulations! This schedule meets credit requirements for graduation.</p>
+                <p>Please <a href="https://www.kent.edu/stark/drop-ins" target="_blank" style="color: #155724; text-decoration: underline; font-weight: 600;">schedule an advising appointment</a> to review your plan.</p>
+            </div>
+            <div style="text-align: right;">
+                <button class="btn btn-primary" id="saveWhatIfBtn">Save Plan</button>
+            </div>
+        </div>
     </div>
 
 </body>
