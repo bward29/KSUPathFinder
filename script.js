@@ -129,4 +129,75 @@ function createPieChart() {
     chartContainer.appendChild(legend);
     
     pieChartContainer.appendChild(chartContainer);
+
+    let currentCredits = 90; 
+const totalCreditsRequired = 120;
+const startingCredits = currentCredits;
+
+const semesterCourses = {
+    Spring2025: [
+        { code: "CS 35201", credits: 3 },
+        { code: "CS 33901", credits: 3 },
+        { code: "CS 44001", credits: 3 },
+        { code: "CS 46101", credits: 4 }
+    ],
+    Summer2025: [],
+    Fall2025: [],
+    Spring2026: []
+};
+
+const academicTab = document.querySelector('.tab:nth-child(1)');
+const whatIfTab = document.querySelector('.tab:nth-child(2)');
+const academicContent = document.getElementById('academic-content');
+const whatIfContent = document.getElementById('what-if-content');
+
+function updateTabDisplay() {
+    if (academicTab.classList.contains('active')) {
+        academicContent.style.display = 'block';
+        whatIfContent.style.display = 'none';
+    } else {
+        academicContent.style.display = 'none';
+        whatIfContent.style.display = 'block';
+        updateWhatIfProgress();
+    }
+}
+
+academicTab.addEventListener('click', function() {
+    academicTab.classList.add('active');
+    whatIfTab.classList.remove('active');
+    updateTabDisplay();
+});
+
+whatIfTab.addEventListener('click', function() {
+    whatIfTab.classList.add('active');
+    academicTab.classList.remove('active');
+    updateTabDisplay();
+});
+
+function updateWhatIfProgress() {
+    let totalCredits = startingCredits;
+    for (const semester in semesterCourses) {
+        semesterCourses[semester].forEach(course => {
+            totalCredits += course.credits;
+        });
+    }
+    
+    const whatIfCreditsElement = document.getElementById('what-if-credits');
+    const whatIfPercentageElement = document.getElementById('what-if-percentage');
+    const whatIfProgressBar = document.getElementById('what-if-progress-bar');
+    const completionMessage = document.getElementById('completion-message');
+    
+    const percentage = Math.min(Math.round((totalCredits / totalCreditsRequired) * 100), 100);
+    
+    whatIfCreditsElement.textContent = `${totalCredits}/${totalCreditsRequired}`;
+    whatIfPercentageElement.textContent = `${percentage}%`;
+    whatIfProgressBar.style.width = `${percentage}%`;
+    
+    if (totalCredits >= totalCreditsRequired) {
+        completionMessage.style.display = 'block';
+    } else {
+        completionMessage.style.display = 'none';
+    }
+}
+
 }
