@@ -456,5 +456,259 @@
 
     </div>
 
+    <div id="chartModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Degree Completion Chart</h2>
+                <span class="close-modal" id="closeChartModal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div id="pieChartContainer"></div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="courseSelectionModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Add Course</h2>
+                <span class="close-modal" id="closeCourseModal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="courseSearch">Search for course:</label>
+                    <input type="text" id="courseSearch" placeholder="e.g., CS 30062">
+                </div>
+                
+                <div class="course-options">
+                    <div class="course-option" data-code="CS 30062" data-credits="3">
+                        <div class="course-option-details">
+                            <span class="course-option-code">CS 30062</span>
+                            <span class="course-option-name">PYTHON FOR DATA SCIENCE</span>
+                        </div>
+                        <span class="course-option-credits">3 credits</span>
+                    </div>
+                    
+                    <div class="course-option" data-code="CS 31045" data-credits="3">
+                        <div class="course-option-details">
+                            <span class="course-option-code">CS 31045</span>
+                            <span class="course-option-name">FORMAL LOGIC</span>
+                        </div>
+                        <span class="course-option-credits">3 credits</span>
+                    </div>
+                    
+                    <div class="course-option" data-code="CS 33006" data-credits="3">
+                        <div class="course-option-details">
+                            <span class="course-option-code">CS 33006</span>
+                            <span class="course-option-name">SOCIAL AND ETHICAL ISSUES</span>
+                        </div>
+                        <span class="course-option-credits">3 credits</span>
+                    </div>
+                    
+                    <div class="course-option" data-code="CS 33092" data-credits="2">
+                        <div class="course-option-details">
+                            <span class="course-option-code">CS 33092</span>
+                            <span class="course-option-name">SPEED PROGRAMMING PRACTICUM</span>
+                        </div>
+                        <span class="course-option-credits">2 credits</span>
+                    </div>
+                    
+                    <div class="course-option" data-code="CS 33301" data-credits="3">
+                        <div class="course-option-details">
+                            <span class="course-option-code">CS 33301</span>
+                            <span class="course-option-name">EMBEDDED SYSTEM PROGRAMMING</span>
+                        </div>
+                        <span class="course-option-credits">3 credits</span>
+                    </div>
+                    
+                    <div class="course-option" data-code="CS 33302" data-credits="3">
+                        <div class="course-option-details">
+                            <span class="course-option-code">CS 33302</span>
+                            <span class="course-option-name">INTRO TO INTELLIGENT ROBOTICS</span>
+                        </div>
+                        <span class="course-option-credits">3 credits</span>
+                    </div>
+                    
+                    <div class="course-option" data-code="CS 38101" data-credits="3">
+                        <div class="course-option-details">
+                            <span class="course-option-code">CS 38101</span>
+                            <span class="course-option-name">INTRO TO GAME PROGRAMMING</span>
+                        </div>
+                        <span class="course-option-credits">3 credits</span>
+                    </div>
+                    
+                    <div class="course-option" data-code="CS 40510" data-credits="3">
+                        <div class="course-option-details">
+                            <span class="course-option-code">CS 40510</span>
+                            <span class="course-option-name">INTRO TO NATURAL LANG PROCESS</span>
+                        </div>
+                        <span class="course-option-credits">3 credits</span>
+                    </div>
+                    
+                    <div class="course-option" data-code="CS 41038" data-credits="3">
+                        <div class="course-option-details">
+                            <span class="course-option-code">CS 41038</span>
+                            <span class="course-option-name">INTERMEDIATE LOGIC</span>
+                        </div>
+                        <span class="course-option-credits">3 credits</span>
+                    </div>
+                    
+                    <div class="course-option" data-code="CS 42201" data-credits="3">
+                        <div class="course-option-details">
+                            <span class="course-option-code">CS 42201</span>
+                            <span class="course-option-name">NUMERICAL LINEAR ALGEBRA</span>
+                        </div>
+                        <span class="course-option-credits">3 credits</span>
+                    </div>
+                    
+                    <div class="course-option" data-code="CS 42202" data-credits="3">
+                        <div class="course-option-details">
+                            <span class="course-option-code">CS 42202</span>
+                            <span class="course-option-name">NUMERICAL APPROX/OPTIMIZATION</span>
+                        </div>
+                        <span class="course-option-credits">3 credits</span>
+                    </div>
+                    
+                    <div class="course-option" data-code="CS 43016" data-credits="3">
+                        <div class="course-option-details">
+                            <span class="course-option-code">CS 43016</span>
+                            <span class="course-option-name">BIG DATA ANALYTICS</span>
+                        </div>
+                        <span class="course-option-credits">3 credits</span>
+                    </div>
+                    
+                    <div class="course-option" data-code="CS 43105" data-credits="3">
+                        <div class="course-option-details">
+                            <span class="course-option-code">CS 43105</span>
+                            <span class="course-option-name">DATA MINING TECHNIQUES</span>
+                        </div>
+                        <span class="course-option-credits">3 credits</span>
+                    </div>
+                    
+                    <div class="course-option" data-code="CS 43111" data-credits="3">
+                        <div class="course-option-details">
+                            <span class="course-option-code">CS 43111</span>
+                            <span class="course-option-name">STRUCTURE OF COMPILERS</span>
+                        </div>
+                        <span class="course-option-credits">3 credits</span>
+                    </div>
+                    
+                    <div class="course-option" data-code="CS 43118" data-credits="3">
+                        <div class="course-option-details">
+                            <span class="course-option-code">CS 43118</span>
+                            <span class="course-option-name">GRAPH SOCIAL NETWK ANALYSIS</span>
+                        </div>
+                        <span class="course-option-credits">3 credits</span>
+                    </div>
+                    
+                    <div class="course-option" data-code="CS 43301" data-credits="3">
+                        <div class="course-option-details">
+                            <span class="course-option-code">CS 43301</span>
+                            <span class="course-option-name">SOFTWARE DEV FOR ROBOTICS</span>
+                        </div>
+                        <span class="course-option-credits">3 credits</span>
+                    </div>
+                    
+                    <div class="course-option" data-code="CS 43303" data-credits="3">
+                        <div class="course-option-details">
+                            <span class="course-option-code">CS 43303</span>
+                            <span class="course-option-name">INTERNET OF THINGS</span>
+                        </div>
+                        <span class="course-option-credits">3 credits</span>
+                    </div>
+                    
+                    <div class="course-option" data-code="CS 43334" data-credits="3">
+                        <div class="course-option-details">
+                            <span class="course-option-code">CS 43334</span>
+                            <span class="course-option-name">HUMAN-ROBOT INTERACTION</span>
+                        </div>
+                        <span class="course-option-credits">3 credits</span>
+                    </div>
+                    
+                    <div class="course-option" data-code="CS 44003" data-credits="3">
+                        <div class="course-option-details">
+                            <span class="course-option-code">CS 44003</span>
+                            <span class="course-option-name">MOBILE APPS IN IOS PROGRAMMING</span>
+                        </div>
+                        <span class="course-option-credits">3 credits</span>
+                    </div>
+                    
+                    <div class="course-option" data-code="CS 44201" data-credits="3">
+                        <div class="course-option-details">
+                            <span class="course-option-code">CS 44201</span>
+                            <span class="course-option-name">ARTIFICIAL INTELLIGENCE</span>
+                        </div>
+                        <span class="course-option-credits">3 credits</span>
+                    </div>
+                    
+                    <div class="course-option" data-code="CS 44202" data-credits="3">
+                        <div class="course-option-details">
+                            <span class="course-option-code">CS 44202</span>
+                            <span class="course-option-name">MACHINE AND DEEP LEARNING</span>
+                        </div>
+                        <span class="course-option-credits">3 credits</span>
+                    </div>
+                    
+                    <div class="course-option" data-code="CS 45203" data-credits="3">
+                        <div class="course-option-details">
+                            <span class="course-option-code">CS 45203</span>
+                            <span class="course-option-name">COMPUTER NETWORK SECURITY</span>
+                        </div>
+                        <span class="course-option-credits">3 credits</span>
+                    </div>
+                    
+                    <div class="course-option" data-code="CS 45231" data-credits="3">
+                        <div class="course-option-details">
+                            <span class="course-option-code">CS 45231</span>
+                            <span class="course-option-name">INTERNET ENGINEERING</span>
+                        </div>
+                        <span class="course-option-credits">3 credits</span>
+                    </div>
+                    
+                    <div class="course-option" data-code="CS 47102" data-credits="3">
+                        <div class="course-option-details">
+                            <span class="course-option-code">CS 47102</span>
+                            <span class="course-option-name">COMPUTER HAPTICS</span>
+                        </div>
+                        <span class="course-option-credits">3 credits</span>
+                    </div>
+                    
+                    <div class="course-option" data-code="CS 47205" data-credits="3">
+                        <div class="course-option-details">
+                            <span class="course-option-code">CS 47205</span>
+                            <span class="course-option-name">INFORMATION SECURITY</span>
+                        </div>
+                        <span class="course-option-credits">3 credits</span>
+                    </div>
+                    
+                    <div class="course-option" data-code="CS 47207" data-credits="3">
+                        <div class="course-option-details">
+                            <span class="course-option-code">CS 47207</span>
+                            <span class="course-option-name">DIGITAL FORENSICS</span>
+                        </div>
+                        <span class="course-option-credits">3 credits</span>
+                    </div>
+                </div>
+                
+                <div class="no-results" style="display: none;">
+                    <p>No courses found. Try a different search term.</p>
+                </div>
+                
+                <div class="form-group" style="margin-top: 20px;">
+                    <label for="manualCourseCode">Or enter course manually:</label>
+                    <div style="display: flex; gap: 10px; margin-top: 5px;">
+                        <input type="text" id="manualCourseCode" placeholder="Course code" style="flex: 2;">
+                        <input type="number" id="manualCourseCredits" placeholder="Credits" min="1" max="6" style="flex: 1;">
+                    </div>
+                </div>
+                
+                <div class="action-buttons" style="margin-top: 20px;">
+                    <button class="btn btn-primary" id="addSelectedCourseBtn">Add Course</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>
