@@ -163,3 +163,70 @@ a.back-link * {
     border-top: 1px solid #eee;
     padding-top: 15px;
 }
+
+.progress-card {
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.tab-container {
+    margin-bottom: 20px;
+}
+
+.tabs {
+    display: flex;
+    border-bottom: 1px solid #444;
+}
+
+.tab {
+    padding: 10px 20px;
+    cursor: pointer;
+    font-weight: 600;
+    color: #ccc;
+}
+
+.tab.active {
+    border-bottom: 3px solid var(--ksu-gold);
+    color: var(--ksu-gold);
+}
+
+.progress-overview {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.progress-item {
+    text-align: center;
+    padding: 15px;
+}
+
+.progress-value {
+    font-size: 24px;
+    font-weight: bold;
+    color: #1B2A47;
+}
+
+.progress-label {
+    font-size: 14px;
+    color: #444;
+    font-weight: 500;
+}
+
+.progress-bar-container {
+    width: 100%;
+    height: 10px;
+    background-color: #eee;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.progress-bar {
+    height: 100%;
+    background-color: var(--ksu-blue);
+    border-radius: 5px;
+}
