@@ -230,3 +230,108 @@ a.back-link * {
     background-color: var(--ksu-blue);
     border-radius: 5px;
 }
+
+.requirement-section {
+    background-color: white;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.requirement-header {
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+}
+
+.requirement-title {
+    font-size: 18px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+}
+
+.status-indicator {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    margin-right: 10px;
+    text-align: center;
+    line-height: 20px;
+    flex-shrink: 0;
+}
+
+.status-complete {
+    background-color: var(--complete-green) !important;
+}
+
+.status-complete i {
+    color: white !important;
+}
+
+.status-incomplete {
+    background-color: var(--incomplete-red) !important;
+}
+
+.status-incomplete i {
+    color: white !important;
+}
+
+.status-inprogress {
+    background-color: var(--inprogress-blue) !important;
+}
+
+.status-inprogress i {
+    color: white !important;
+}
+
+.status-tag {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.tag-complete {
+    background-color: #d4edda;
+    color: var(--complete-green) !important;
+}
+
+.tag-incomplete {
+    background-color: #f8d7da;
+    color: var(--incomplete-red) !important;
+}
+
+.tag-inprogress {
+    background-color: #cce5ff;
+    color: var(--inprogress-blue) !important;
+}
+
+.requirement-content {
+    padding: 0 20px 20px;
+    background-color: white;
+    color: #1B2A47 !important;
+}
+
+.requirement-content p,
+.requirement-content div,
+.requirement-content span,
+.requirement-content strong {
+    color: #1B2A47 !important;
+}
+
+.requirement-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    padding-top: 15px;
+}
+
+.requirement-detail {
+    font-size: 14px;
+}
