@@ -335,6 +335,59 @@ addSelectedCourseBtn.addEventListener('click', function() {
     
     courseSelectionModal.style.display = 'none';
 });
+function updateCourseList(semester) {
+    const courseListElement = document.getElementById(`${semester}-courses`);
+    courseListElement.innerHTML = '';
+    
+    semesterCourses[semester].forEach((course, index) => {
+        const courseItem = document.createElement('div');
+        courseItem.className = 'course-item';
+        
+        const courseCode = document.createElement('span');
+        courseCode.className = 'course-code';
+        courseCode.textContent = course.code;
+        
+        const courseCredits = document.createElement('span');
+        courseCredits.className = 'course-credits';
+        courseCredits.textContent = `(${course.credits})`;
+        
+        const removeButton = document.createElement('button');
+        removeButton.className = 'remove-course-btn';
+        removeButton.textContent = '×';
+        removeButton.dataset.index = index;
+        removeButton.dataset.semester = semester;
+        
+        courseItem.appendChild(courseCode);
+        courseItem.appendChild(courseCredits);
+        courseItem.appendChild(removeButton);
+        
+        courseListElement.appendChild(courseItem);
+    });
+    
+    document.querySelectorAll('.remove-course-btn').forEach(button => {
+        if (button.dataset.semester && button.dataset.index !== undefined) {
+            button.addEventListener('click', function() {
+                const semester = this.dataset.semester;
+                const index = parseInt(this.dataset.index);
+                
+                semesterCourses[semester].splice(index, 1);
+                
+                updateCourseList(semester);
+                updateWhatIfProgress();
+                updateAvailableCourses();
+            });
+        }
+    });
+}
 
+for (const semester in semesterCourses) {
+    updateCourseList(semester);
+}
+
+document.getElementById('saveWhatIfBtn').addEventListener('click', function() {
+    alert('Your What-If plan has been saved!');
+});
+
+updateWhatIfProgress();
 
 }
