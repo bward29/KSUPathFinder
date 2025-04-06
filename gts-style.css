@@ -1,0 +1,45 @@
+:root {
+    --ksu-blue: #0033A0;
+    --ksu-gold: #F2C75C;
+    --complete-green: #28a745;
+    --incomplete-red: #dc3545;
+    --inprogress-blue: #007bff;
+    --section-bg: #ffffff;
+    --header-bg: #0033A0;
+    --header-text: white;
+    --main-bg: #1B2A47;
+    --card-bg: #ffffff;
+    --text-light: #f5f5f5;
+    --text-dark: #333;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--main-bg);
+    color: var(--text-light);
+    line-height: 1.6;
+}
+
+.student-info-card *,
+.progress-card *,
+.requirement-section *,
+.tab-content * {
+    color: #1B2A47 !important;
+}
+
+.status-indicator.status-complete *,
+.status-indicator.status-incomplete *,
+.status-indicator.status-inprogress * {
+    color: white !important;
+}
+
+a,
+a * {
+    color: #0033A0 !important;
+}
