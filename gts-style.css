@@ -574,3 +574,50 @@ a.back-link * {
     border-radius: 4px;
     font-size: 14px;
 }
+
+.course-option.disabled {
+    opacity: 0.5;
+    background-color: #f0f0f0;
+    cursor: not-allowed;
+    position: relative;
+}
+
+.course-option.disabled .course-option-credits {
+    visibility: hidden;
+}
+
+.course-option.disabled::after {
+    content: "Already selected";
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #dc3545;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+@media (max-width: 1024px) {
+    .semester-planner {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .student-info-header {
+        grid-template-columns: 1fr;
+    }
+
+    .student-info-details {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .progress-overview {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .semester-planner {
+        grid-template-columns: 1fr;
+    }
+}
