@@ -511,3 +511,66 @@ a.back-link * {
     cursor: pointer;
     padding: 0 5px;
 }
+
+.course-options {
+    max-height: 300px;
+    overflow-y: auto;
+    margin-top: 15px;
+}
+
+.course-option {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+}
+
+.course-option:hover {
+    background-color: #f5f5f5;
+}
+
+.course-option.selected {
+    background-color: #e6f0ff;
+    border-left: 4px solid var(--ksu-blue);
+}
+
+.course-option-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.course-option-code {
+    font-weight: 600;
+    color: #1B2A47;
+}
+
+.course-option-name {
+    color: #666;
+    font-size: 14px;
+}
+
+.course-option-credits {
+    color: #1B2A47;
+    font-weight: 600;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: #1B2A47;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+}
